@@ -55,6 +55,8 @@ const budgetLabels = {
 
 // ─── Brevo API helper ───
 async function brevoRequest(url, payload) {
+  console.log(`[BREVO] Calling ${url}...`);
+  console.log(`[BREVO] API Key present: ${!!BREVO_API_KEY}`);
   try {
     const res = await fetch(url, {
       method: 'POST',
@@ -66,12 +68,13 @@ async function brevoRequest(url, payload) {
       body: JSON.stringify(payload),
     });
     const body = await res.json().catch(() => ({}));
+    console.log(`[BREVO] Response (${res.status}):`, JSON.stringify(body).substring(0, 200));
     if (!res.ok) {
-      console.error(`Brevo API error (${res.status}):`, body);
+      console.error(`[BREVO] API error (${res.status}):`, body);
     }
     return { code: res.status, body };
   } catch (err) {
-    console.error('Brevo request failed:', err.message);
+    console.error('[BREVO] Request failed:', err.message);
     return { code: 500, body: { error: err.message } };
   }
 }
