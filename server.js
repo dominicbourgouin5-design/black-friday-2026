@@ -44,13 +44,19 @@ const triggerLabels = {
   'bonus': 'Des bonus offerts',
 };
 
-const budgetLabels = {
-  'moins-100k': 'Moins de 100 000 FCFA',
-  '100-200k': '100 000 - 200 000 FCFA',
-  '200-350k': '200 000 - 350 000 FCFA',
-  '350-500k': '350 000 - 500 000 FCFA',
-  '500k+': 'Plus de 500 000 FCFA',
-  'paiement-echelonne': 'Prefere payer en plusieurs fois',
+const timelineLabels = {
+  'urgent': 'Tres urgent (1-2 semaines)',
+  '1-2-mois': '1-2 mois',
+  '2-3-mois': '2-3 mois',
+  '3-6-mois': '3-6 mois',
+  'flexible': 'Flexible, pas urgent',
+};
+
+const expensiveLabels = {
+  'oui-trop': 'Oui, c\'etait trop cher pour moi',
+  'oui-valeur': 'Oui, le rapport qualite-prix n\'etait pas bon',
+  'non-ok': 'Non, le prix etait correct',
+  'uncertain': 'Je ne sais pas',
 };
 
 // ─── Brevo API helper ───
@@ -91,11 +97,17 @@ app.post('/submit', async (req, res) => {
   const project = projectLabels[data.project] || data.project || 'Non selectionne';
   const objections = (data.objections || []).map(o => objectionLabels[o] || o);
   const triggers = (data.triggers || []).map(t => triggerLabels[t] || t);
-  const budget = budgetLabels[data.budget] || data.budget || 'Non renseigne';
-  const urgency = parseInt(data.urgency) || 0;
+  const timeline = timelineLabels[data.timeline] || data.timeline || 'Non renseigne';
+  const expensive = expensiveLabels[data.expensive] || data.expensive || 'Non renseigne';
   const trust = parseInt(data.trust) || 0;
+  const interest = parseInt(data.interest) || 0;
+  const costValue = parseInt(data.costValue) || 0;
   const message = data.message || 'Aucun';
   const autreResult = data.autreResult || '';
+  const budgetMax = data.budgetMax || 'Non renseigne';
+  const scope = data.scope || 'Non renseigne';
+  const wouldBook = data.wouldBook || 'Non renseigne';
+  const expensiveWhy = data.expensiveWhy || 'Non renseigne';
 
   // 1. Create/Update Brevo contact
   await brevoRequest('https://api.brevo.com/v3/contacts', {
@@ -103,9 +115,15 @@ app.post('/submit', async (req, res) => {
     attributes: {
       BF_PROJECT: project,
       BF_OBJECTIONS: objections.join(', '),
-      BF_BUDGET: budget,
-      BF_URGENCY: urgency,
-      BF_TRUST: trust,
+      BF_BUDGET_MAX: budgetMax,
+      BF_TIMELINE: timeline,
+      BF_SCOPE: scope,
+      BF_WOULD_BOOK: wouldBook,
+      BF_EXPENSIVE: expensive,
+      BF_EXPENSIVE_WHY: expensiveWhy,
+      BF_COST_VALUE: String(costValue),
+      BF_TRUST: String(trust),
+      BF_INTEREST: String(interest),
       BF_TRIGGERS: triggers.join(', '),
       BF_MESSAGE: data.message || '',
     },
@@ -113,25 +131,32 @@ app.post('/submit', async (req, res) => {
   });
 
   // 2. Notification email
-  const urgencyBar = '★'.repeat(urgency) + '☆'.repeat(5 - urgency);
   const trustBar = '★'.repeat(trust) + '☆'.repeat(5 - trust);
+  const interestBar = '★'.repeat(interest) + '☆'.repeat(5 - interest);
+  const costValueBar = '★'.repeat(costValue) + '☆'.repeat(5 - costValue);
 
   const notifHtml = `
-<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+<div style="font-family:Arial,sans-serif;max-width:700px;margin:0 auto;">
   <div style="background:#f59e0b;color:#000;padding:16px 24px;border-radius:8px 8px 0 0;">
-    <h2 style="margin:0;">🔥 Nouvelle reponse Black Friday</h2>
+    <h2 style="margin:0;">🔥 Nouvelle reponse Black Friday 2026</h2>
   </div>
   <div style="background:#1a1a1a;color:#fafaf9;padding:24px;border-radius:0 0 8px 8px;">
-    <table style="width:100%;border-collapse:collapse;">
-      <tr><td style="padding:8px 0;color:#999;width:140px;">Email</td><td style="padding:8px 0;"><strong>${email}</strong></td></tr>
-      <tr><td style="padding:8px 0;color:#999;">Projet</td><td style="padding:8px 0;">${project}</td></tr>
-      <tr><td style="padding:8px 0;color:#999;">Freins</td><td style="padding:8px 0;">${objections.length ? objections.join('<br>') : 'Aucun'}</td></tr>
-      ${autreResult ? `<tr><td style="padding:8px 0;color:#999;">Autre presta</td><td style="padding:8px 0;">${autreResult}</td></tr>` : ''}
-      <tr><td style="padding:8px 0;color:#999;">Urgence</td><td style="padding:8px 0;">${urgencyBar} (${urgency}/5)</td></tr>
-      <tr><td style="padding:8px 0;color:#999;">Budget</td><td style="padding:8px 0;">${budget}</td></tr>
-      <tr><td style="padding:8px 0;color:#999;">Declencheurs</td><td style="padding:8px 0;">${triggers.length ? triggers.join('<br>') : 'Aucun'}</td></tr>
-      <tr><td style="padding:8px 0;color:#999;">Confiance</td><td style="padding:8px 0;">${trustBar} (${trust}/5)</td></tr>
-      <tr><td style="padding:8px 0;color:#999;">Message</td><td style="padding:8px 0;">${message}</td></tr>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <tr><td style="padding:6px 0;color:#999;width:160px;">Email</td><td style="padding:6px 0;"><strong>${email}</strong></td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Projet</td><td style="padding:6px 0;">${project}</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Freins</td><td style="padding:6px 0;">${objections.length ? objections.join(' | ') : 'Aucun'}</td></tr>
+      ${autreResult ? `<tr><td style="padding:6px 0;color:#999;">Autre offre</td><td style="padding:6px 0;">${autreResult}</td></tr>` : ''}
+      <tr style="border-top:1px solid rgba(255,255,255,0.1);"><td style="padding:6px 0;color:#999;">Budget max</td><td style="padding:6px 0;">${budgetMax}</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Timeline</td><td style="padding:6px 0;">${timeline}</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Scope</td><td style="padding:6px 0;word-break:break-word;">${scope}</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,0.1);"><td style="padding:6px 0;color:#999;">Aurait boucle ?</td><td style="padding:6px 0;word-break:break-word;">${wouldBook}</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Trop cher ?</td><td style="padding:6px 0;">${expensive}</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Pourquoi ?</td><td style="padding:6px 0;word-break:break-word;">${expensiveWhy}</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,0.1);"><td style="padding:6px 0;color:#999;">Cout vs Valeur</td><td style="padding:6px 0;">${costValueBar} (${costValue}/5)</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Interet</td><td style="padding:6px 0;">${interestBar} (${interest}/5)</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Confiance</td><td style="padding:6px 0;">${trustBar} (${trust}/5)</td></tr>
+      <tr><td style="padding:6px 0;color:#999;">Declencheurs</td><td style="padding:6px 0;">${triggers.length ? triggers.join(' | ') : 'Aucun'}</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,0.1);"><td style="padding:6px 0;color:#999;">Message</td><td style="padding:6px 0;word-break:break-word;">${message}</td></tr>
     </table>
   </div>
 </div>`;

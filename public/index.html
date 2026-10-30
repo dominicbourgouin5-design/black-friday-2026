@@ -565,7 +565,9 @@
     <div class="step-line" id="sl1"></div>
     <div class="step-pill" id="sp2"><span class="num">2</span> Situation</div>
     <div class="step-line" id="sl2"></div>
-    <div class="step-pill" id="sp3"><span class="num">3</span> Offre</div>
+    <div class="step-pill" id="sp3"><span class="num">3</span> Budget</div>
+    <div class="step-line" id="sl3"></div>
+    <div class="step-pill" id="sp4"><span class="num">4</span> Offre</div>
   </div>
 
   <p style="text-align:center;color:var(--fg-muted);font-size:0.95rem;margin:0 auto 1.5rem;max-width:480px;">Votre projet vous attend. Voyons ce qu'on peut faire ensemble en 2026.</p>
@@ -667,18 +669,18 @@
     <div class="form-step" id="step2">
       <div class="section-head">
         <h2>Qu'est-ce qui s'est passe ?</h2>
-        <p>Nous vous ecoutons pour vous preparer une offre qui repond vraiment a vos attentes.</p>
+        <p>On vous ecoute pour comprendre ce qui n'a pas marche.</p>
       </div>
 
       <div class="field">
-        <span class="field-label">Le frein principal, c'etait quoi ?</span>
+        <span class="field-label">Quel etait le frein principal ?</span>
         <div class="opt-grid" id="objections">
           <label class="opt-card" onclick="toggleOpt(this)">
             <input type="checkbox" name="objection" value="prix">
             <span class="opt-emoji">&#128176;</span>
             <div class="opt-body">
               <div class="opt-title">Le prix ne passait pas</div>
-              <div class="opt-desc">Le devis depassait ce que je pouvais mettre a ce moment-la</div>
+              <div class="opt-desc">Le devis depassait ce que je pouvais mettre</div>
             </div>
           </label>
 
@@ -687,7 +689,7 @@
             <span class="opt-emoji">&#9200;</span>
             <div class="opt-body">
               <div class="opt-title">C'etait pas le bon moment</div>
-              <div class="opt-desc">Trop de choses en meme temps, j'ai remis a plus tard</div>
+              <div class="opt-desc">Trop de choses en meme temps, remis a plus tard</div>
             </div>
           </label>
 
@@ -695,8 +697,8 @@
             <input type="checkbox" name="objection" value="pas-convaincu">
             <span class="opt-emoji">&#129300;</span>
             <div class="opt-body">
-              <div class="opt-title">Je n'etais pas 100% convaincu</div>
-              <div class="opt-desc">Pas sur que ca allait vraiment m'apporter des clients</div>
+              <div class="opt-title">Pas 100% convaincu</div>
+              <div class="opt-desc">Pas sur que ca m'apporterait des resultats</div>
             </div>
           </label>
 
@@ -704,8 +706,8 @@
             <input type="checkbox" name="objection" value="autre-offre">
             <span class="opt-emoji">&#128101;</span>
             <div class="opt-body">
-              <div class="opt-title">J'ai eu une autre proposition</div>
-              <div class="opt-desc">Quelqu'un m'a propose moins cher ou differemment</div>
+              <div class="opt-title">Autre proposition</div>
+              <div class="opt-desc">Quelqu'un m'a propose moins cher</div>
             </div>
           </label>
 
@@ -713,8 +715,8 @@
             <input type="checkbox" name="objection" value="complique">
             <span class="opt-emoji">&#128565;</span>
             <div class="opt-body">
-              <div class="opt-title">Ca me semblait trop complique</div>
-              <div class="opt-desc">Je ne savais pas exactement ce que je voulais ni comment ca marche</div>
+              <div class="opt-title">Trop complique</div>
+              <div class="opt-desc">Je ne savais pas exactement ce que je voulais</div>
             </div>
           </label>
 
@@ -722,46 +724,21 @@
             <input type="checkbox" name="objection" value="confiance">
             <span class="opt-emoji">&#128556;</span>
             <div class="opt-body">
-              <div class="opt-title">J'avais peur d'etre decu</div>
-              <div class="opt-desc">On m'a deja fait des promesses non tenues avant</div>
+              <div class="opt-title">Manque de confiance</div>
+              <div class="opt-desc">On m'a deja fait des promesses non tenues</div>
             </div>
           </label>
         </div>
       </div>
 
       <div class="field" id="q-autre-offre" style="display:none">
-        <span class="field-label">Cette autre proposition, ca a donne quoi ?</span>
+        <span class="field-label">Et cette autre proposition, ca a abouti ?</span>
         <select id="autre-result">
           <option value="">Choisissez...</option>
-          <option value="pas-fait">Finalement, ca ne s'est pas fait non plus</option>
-          <option value="fait-decu">Ca s'est fait mais je suis decu du resultat</option>
-          <option value="fait-ok">Ca s'est fait et c'est correct</option>
-          <option value="en-cours">C'est encore en cours</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <span class="field-label">Aujourd'hui, ce projet vous le voulez toujours ?</span>
-        <div class="scale-row" id="urgency-scale">
-          <div class="scale-btn" onclick="selectScale('urgency',1,this)">1</div>
-          <div class="scale-btn" onclick="selectScale('urgency',2,this)">2</div>
-          <div class="scale-btn" onclick="selectScale('urgency',3,this)">3</div>
-          <div class="scale-btn" onclick="selectScale('urgency',4,this)">4</div>
-          <div class="scale-btn" onclick="selectScale('urgency',5,this)">5</div>
-        </div>
-        <div class="scale-labels"><span>Pas vraiment</span><span>C'est urgent</span></div>
-      </div>
-
-      <div class="field">
-        <span class="field-label">Quel budget pouvez-vous consacrer a votre projet ?</span>
-        <select id="budget">
-          <option value="">Choisissez...</option>
-          <option value="moins-100k">Moins de 100 000 FCFA</option>
-          <option value="100-200k">100 000 – 200 000 FCFA</option>
-          <option value="200-350k">200 000 – 350 000 FCFA</option>
-          <option value="350-500k">350 000 – 500 000 FCFA</option>
-          <option value="500k+">Plus de 500 000 FCFA</option>
-          <option value="paiement-echelonne">Je prefere payer en plusieurs fois</option>
+          <option value="pas-fait">Non, ca ne s'est pas fait</option>
+          <option value="fait-decu">Oui, mais je suis decu</option>
+          <option value="fait-ok">Oui, c'est correct</option>
+          <option value="en-cours">Oui, c'est encore en cours</option>
         </select>
       </div>
 
@@ -774,8 +751,76 @@
     <!-- STEP 3 -->
     <div class="form-step" id="step3">
       <div class="section-head">
-        <h2>Derniere etape</h2>
-        <p>On finalise votre demande pour vous proposer l'offre la plus adaptee.</p>
+        <h2>Budget & Timing</h2>
+        <p>Parlons de vos besoins financiers et de votre timeline.</p>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Quel est votre budget maximum pour ce projet ?</span>
+        <input type="text" id="budget-max" placeholder="Ex: 500 000 FCFA, 5 millions..." autocomplete="off">
+      </div>
+
+      <div class="field">
+        <span class="field-label">Quand avez-vous besoin que ce projet soit fait ?</span>
+        <select id="timeline">
+          <option value="">Choisissez...</option>
+          <option value="urgent">Tres urgent (1-2 semaines)</option>
+          <option value="1-2-mois">1-2 mois</option>
+          <option value="2-3-mois">2-3 mois</option>
+          <option value="3-6-mois">3-6 mois</option>
+          <option value="flexible">Flexible, pas urgent</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Decrivez en detail ce que vous attendez <span class="field-hint">(fonctionnalites, pages, integraciones, etc.)</span></span>
+        <textarea id="scope" placeholder="Ex: Site vitrine avec 5 pages, formulaire de contact, galerie photos..."></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn-ghost" onclick="goStep(2)">Retour</button>
+        <button type="button" class="btn btn-primary" onclick="goStep(4)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="form-step" id="step4">
+      <div class="section-head">
+        <h2>Questions finales</h2>
+        <p>Derniers details pour personnaliser votre offre.</p>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Si ca ne tenait qu'a vous, auriez-vous voulu boucler avec nous ? Si oui, pourquoi ca s'est pas fait ?</span>
+        <textarea id="would-book" placeholder="Expliquez votre pensee..."></textarea>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Pensez-vous que notre proposition etait trop chere ? Pourquoi ?</span>
+        <select id="expensive">
+          <option value="">Choisissez...</option>
+          <option value="oui-trop">Oui, c'etait trop cher pour moi</option>
+          <option value="oui-valeur">Oui, le rapport qualite-prix n'etait pas bon</option>
+          <option value="non-ok">Non, le prix etait correct</option>
+          <option value="uncertain">Je ne sais pas</option>
+        </select>
+      </div>
+
+      <div class="field" id="q-expensive-why" style="display:none">
+        <span class="field-label">Detaillez un peu plus</span>
+        <textarea id="expensive-why" placeholder="Qu'est-ce qui vous aurait fait dire oui au niveau du prix ?"></textarea>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Le cout versus le resultat attendu : comment vous voyez ca ?</span>
+        <div class="scale-row" id="cost-vs-value">
+          <div class="scale-btn" onclick="selectScale('costValue',1,this)">1</div>
+          <div class="scale-btn" onclick="selectScale('costValue',2,this)">2</div>
+          <div class="scale-btn" onclick="selectScale('costValue',3,this)">3</div>
+          <div class="scale-btn" onclick="selectScale('costValue',4,this)">4</div>
+          <div class="scale-btn" onclick="selectScale('costValue',5,this)">5</div>
+        </div>
+        <div class="scale-labels"><span>Cout >> Resultat</span><span>Equilibre parfait</span></div>
       </div>
 
       <div class="field">
@@ -786,7 +831,7 @@
             <span class="opt-emoji">&#128293;</span>
             <div class="opt-body">
               <div class="opt-title">Un prix vraiment reduit</div>
-              <div class="opt-desc">Une remise significative pour le Black Friday</div>
+              <div class="opt-desc">Remise Black Friday significative</div>
             </div>
           </label>
 
@@ -794,8 +839,8 @@
             <input type="checkbox" name="trigger" value="paiement-echelonne">
             <span class="opt-emoji">&#128179;</span>
             <div class="opt-body">
-              <div class="opt-title">Pouvoir payer en plusieurs fois</div>
-              <div class="opt-desc">Etaler le paiement sur 2-3 mois</div>
+              <div class="opt-title">Payer en plusieurs fois</div>
+              <div class="opt-desc">Echelonner sur 2-3 mois</div>
             </div>
           </label>
 
@@ -803,8 +848,8 @@
             <input type="checkbox" name="trigger" value="garantie">
             <span class="opt-emoji">&#128170;</span>
             <div class="opt-body">
-              <div class="opt-title">Une garantie "satisfait ou rembourse"</div>
-              <div class="opt-desc">Etre rembourse si le resultat ne me plait pas</div>
+              <div class="opt-title">Garantie "Satisfait"</div>
+              <div class="opt-desc">Remboursement si decu</div>
             </div>
           </label>
 
@@ -812,8 +857,8 @@
             <input type="checkbox" name="trigger" value="voir-avant">
             <span class="opt-emoji">&#128064;</span>
             <div class="opt-body">
-              <div class="opt-title">Voir un apercu avant de payer</div>
-              <div class="opt-desc">Une maquette ou demo gratuite pour me projeter</div>
+              <div class="opt-title">Apercu gratuit</div>
+              <div class="opt-desc">Maquette ou demo avant paiement</div>
             </div>
           </label>
 
@@ -821,15 +866,27 @@
             <input type="checkbox" name="trigger" value="bonus">
             <span class="opt-emoji">&#127873;</span>
             <div class="opt-body">
-              <div class="opt-title">Des bonus offerts</div>
-              <div class="opt-desc">Logo, domaine, hebergement ou maintenance inclus</div>
+              <div class="opt-title">Des bonus</div>
+              <div class="opt-desc">Logo, domaine, hebergement inclus</div>
             </div>
           </label>
         </div>
       </div>
 
       <div class="field">
-        <span class="field-label">Sur une echelle de 1 a 5, a quel point vous nous faites confiance pour livrer ?</span>
+        <span class="field-label">Quel est vraiment votre niveau d'interet pour ce projet ?</span>
+        <div class="scale-row" id="interest-scale">
+          <div class="scale-btn" onclick="selectScale('interest',1,this)">1</div>
+          <div class="scale-btn" onclick="selectScale('interest',2,this)">2</div>
+          <div class="scale-btn" onclick="selectScale('interest',3,this)">3</div>
+          <div class="scale-btn" onclick="selectScale('interest',4,this)">4</div>
+          <div class="scale-btn" onclick="selectScale('interest',5,this)">5</div>
+        </div>
+        <div class="scale-labels"><span>Pas intresse</span><span>Tres intresse</span></div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">A quel point nous faites-vous confiance pour livrer ?</span>
         <div class="scale-row" id="trust-scale">
           <div class="scale-btn" onclick="selectScale('trust',1,this)">1</div>
           <div class="scale-btn" onclick="selectScale('trust',2,this)">2</div>
@@ -847,7 +904,7 @@
 
       <div class="field">
         <span class="field-label">Un dernier mot ? <span class="field-hint">(facultatif)</span></span>
-        <textarea id="message" placeholder="Ce que vous aimeriez qu'on sache, une question, un doute..."></textarea>
+        <textarea id="message" placeholder="Ce que vous aimeriez qu'on sache, une question..."></textarea>
       </div>
 
       <div class="nav-row" style="flex-direction:column; gap:0.5rem;">
@@ -858,7 +915,7 @@
       </div>
 
       <div class="nav-row" style="margin-top:0.5rem;">
-        <button type="button" class="btn btn-ghost" onclick="goStep(2)">Retour</button>
+        <button type="button" class="btn btn-ghost" onclick="goStep(3)">Retour</button>
       </div>
     </div>
   </form>
@@ -891,7 +948,13 @@
   tick(); setInterval(tick,1000);
 })();
 
-var formData = { project:'', objections:[], urgency:0, budget:'', triggers:[], trust:0, email:'', message:'', autreResult:'' };
+var formData = {
+  project:'', objections:[], autreResult:'',
+  budgetMax:'', timeline:'', scope:'',
+  wouldBook:'', expensive:'', expensiveWhy:'',
+  costValue:0, triggers:[], interest:0, trust:0,
+  email:'', message:''
+};
 var currentStep = 1;
 
 function goStep(n) {
@@ -899,7 +962,7 @@ function goStep(n) {
   document.getElementById('step'+n).classList.add('visible');
   currentStep = n;
 
-  for(var i=1;i<=3;i++){
+  for(var i=1;i<=4;i++){
     var pill = document.getElementById('sp'+i);
     var line = document.getElementById('sl'+(i-1));
     pill.classList.remove('active','done');
@@ -928,6 +991,16 @@ function toggleOpt(el) {
   }, 10);
 }
 
+function setupExpensiveToggle() {
+  var expensiveSelect = document.getElementById('expensive');
+  if(expensiveSelect) {
+    expensiveSelect.addEventListener('change', function(){
+      var showWhy = (this.value === 'oui-trop' || this.value === 'oui-valeur');
+      document.getElementById('q-expensive-why').style.display = showWhy ? 'block' : 'none';
+    });
+  }
+}
+
 function selectScale(key, val, el) {
   formData[key] = val;
   var row = el.parentElement;
@@ -951,10 +1024,15 @@ function submitForm() {
   var trigs = document.querySelectorAll('input[name="trigger"]:checked');
   for(var i=0;i<trigs.length;i++) formData.triggers.push(trigs[i].value);
 
-  formData.budget = document.getElementById('budget').value;
+  formData.autreResult = document.getElementById('autre-result').value;
+  formData.budgetMax = document.getElementById('budget-max').value.trim();
+  formData.timeline = document.getElementById('timeline').value;
+  formData.scope = document.getElementById('scope').value.trim();
+  formData.wouldBook = document.getElementById('would-book').value.trim();
+  formData.expensive = document.getElementById('expensive').value;
+  formData.expensiveWhy = document.getElementById('expensive-why').value.trim();
   formData.email = email;
   formData.message = document.getElementById('message').value.trim();
-  formData.autreResult = document.getElementById('autre-result').value;
   formData.submitted_at = new Date().toISOString();
 
   var submitBtn = document.querySelector('.btn-big');
@@ -1007,6 +1085,7 @@ goStep = function(n) {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+  setupExpensiveToggle();
   setTimeout(function() {
     revealCards(document.getElementById('step1'));
   }, 1000);
