@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Friday Offre Speciale — Cataria Systems</title>
+<meta name="description" content="Votre projet n'a jamais vu le jour. Profitez du Black Friday 2026 pour le concretiser avec une offre speciale.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --bg: #09090b;
+    --bg-card: rgba(255,255,255,0.04);
+    --bg-card-hover: rgba(255,255,255,0.07);
+    --bg-selected: rgba(245,158,11,0.12);
+    --fg: #fafaf9;
+    --fg-muted: #71717a;
+    --fg-dim: #52525b;
+    --accent: #f59e0b;
+    --accent-glow: rgba(245,158,11,0.25);
+    --accent-hover: #fbbf24;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(245,158,11,0.4);
+    --input-bg: rgba(255,255,255,0.05);
+    --success: #22c55e;
+    --gradient-gold: linear-gradient(135deg, #f59e0b, #f97316, #ef4444);
+    color-scheme: dark;
+    --font-display: 'Syne', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #fafaf9;
+      --bg-card: rgba(0,0,0,0.03);
+      --bg-card-hover: rgba(0,0,0,0.06);
+      --bg-selected: rgba(217,119,6,0.1);
+      --fg: #18181b;
+      --fg-muted: #71717a;
+      --fg-dim: #a1a1aa;
+      --accent: #d97706;
+      --accent-glow: rgba(217,119,6,0.15);
+      --accent-hover: #b45309;
+      --border: rgba(0,0,0,0.08);
+      --border-accent: rgba(217,119,6,0.5);
+      --input-bg: rgba(0,0,0,0.04);
+      --success: #16a34a;
+      --gradient-gold: linear-gradient(135deg, #d97706, #ea580c, #dc2626);
+      color-scheme: light;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #fafaf9;
+    --bg-card: rgba(0,0,0,0.03);
+    --bg-card-hover: rgba(0,0,0,0.06);
+    --bg-selected: rgba(217,119,6,0.1);
+    --fg: #18181b;
+    --fg-muted: #71717a;
+    --fg-dim: #a1a1aa;
+    --accent: #d97706;
+    --accent-glow: rgba(217,119,6,0.15);
+    --accent-hover: #b45309;
+    --border: rgba(0,0,0,0.08);
+    --border-accent: rgba(217,119,6,0.5);
+    --input-bg: rgba(0,0,0,0.04);
+    --success: #16a34a;
+    --gradient-gold: linear-gradient(135deg, #d97706, #ea580c, #dc2626);
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 16px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-block: 2.5rem 5rem;
+  }
+
+  .hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--gradient-gold);
+    color: #000;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4em 1em;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge .flash { animation: pulse 1.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1rem + 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.08;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-hook {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 0.7rem + 2vw, 1.35rem);
+    font-weight: 600;
+    margin: 0 0 1.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-sub {
+    color: var(--fg-muted);
+    font-size: 1rem;
+    margin: 0 auto 2rem;
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  .timer {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .t-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    min-width: 56px;
+    text-align: center;
+  }
+
+  .t-box .n {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.4rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    display: block;
+    line-height: 1.2;
+    text-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .t-box .l {
+    font-size: 0.6rem;
+    color: var(--fg-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .timer-label {
+    font-size: 0.75rem;
+    color: var(--fg-dim);
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .stepper {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .step-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--fg-dim);
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+
+  .step-pill .num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.65rem;
+    transition: all 0.3s;
+  }
+
+  .step-pill.active { color: var(--fg); }
+  .step-pill.active .num {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+  }
+  .step-pill.done .num {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+  }
+
+  .step-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin: 0 0.5rem;
+    transition: background 0.3s;
+  }
+
+  .step-line.done { background: var(--success); }
+
+  .form-step { display: none; }
+  .form-step.visible { display: block; animation: fadeUp 0.35s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-head { margin-bottom: 1.5rem; }
+  .section-head h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+  }
+  .section-head p {
+    color: var(--fg-muted);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .project-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+  }
+
+  .project-card.selected {
+    background: var(--bg-selected);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent-glow);
+  }
+
+  .project-card input { display: none; }
+
+  .p-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--bg-card-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .project-card.selected .p-icon { background: var(--accent); }
+  .p-info { flex: 1; min-width: 0; }
+  .p-name { font-weight: 600; font-size: 0.9rem; line-height: 1.3; }
+  .p-type { font-size: 0.75rem; color: var(--fg-muted); }
+
+  .p-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .project-card.selected .p-check {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+  .p-check::after { content: ''; display: none; }
+  .project-card.selected .p-check::after {
+    content: '\2713';
+    display: block;
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .opt-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .opt-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .opt-card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); }
+  .opt-card.selected { background: var(--bg-selected); border-color: var(--accent); }
+  .opt-card input { display: none; }
+  .opt-emoji { font-size: 1.2rem; line-height: 1.3; flex-shrink: 0; margin-top: 0.05rem; }
+  .opt-body { flex: 1; min-width: 0; }
+  .opt-title { font-weight: 600; font-size: 0.875rem; line-height: 1.3; margin-bottom: 0.15rem; }
+  .opt-desc { font-size: 0.78rem; color: var(--fg-muted); line-height: 1.4; }
+
+  .scale-row { display: flex; gap: 0.4rem; }
+
+  .scale-btn {
+    flex: 1;
+    padding: 0.65rem 0;
+    text-align: center;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scale-btn:hover { border-color: var(--border-accent); color: var(--fg); }
+  .scale-btn.selected { background: var(--accent); border-color: var(--accent); color: #000; }
+  .scale-btn:active { transform: scale(0.92); }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: var(--fg-dim);
+    margin-top: 0.4rem;
+    padding: 0 0.15rem;
+  }
+
+  select {
+    width: 100%;
+    background-color: var(--bg-card);
+    color: var(--fg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 2.5rem 0.75rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%2371717a'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    transition: border-color 0.15s;
+  }
+
+  select option { background: var(--bg); color: var(--fg); padding: 0.5rem; }
+  select:focus { outline: none; border-color: var(--accent); }
+
+  input[type="email"],
+  textarea {
+    width: 100%;
+    background: var(--input-bg);
+    color: var(--fg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: border-color 0.15s;
+  }
+
+  input[type="email"]:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .field { margin-bottom: 1.5rem; }
+  .field:last-child { margin-bottom: 0; }
+  .field-label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--fg); }
+  .field-hint { font-weight: 400; color: var(--fg-muted); margin-left: 0.25rem; }
+
+  .nav-row { display: flex; gap: 0.75rem; margin-top: 2rem; }
+
+  .btn {
+    flex: 1;
+    padding: 0.85rem 1.25rem;
+    border-radius: 8px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    border: none;
+  }
+
+  .btn-ghost { background: var(--bg-card); color: var(--fg-muted); border: 1px solid var(--border); }
+  .btn-ghost:hover { color: var(--fg); border-color: var(--fg-dim); }
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-big {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-big::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 2.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    60%,100% { transform: translateX(100%); }
+  }
+
+  .privacy { text-align: center; font-size: 0.7rem; color: var(--fg-dim); margin-top: 0.75rem; }
+
+  .proof {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .proof-item { text-align: center; }
+  .proof-item .pn { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--accent); }
+  .proof-item .pl { font-size: 0.68rem; color: var(--fg-dim); text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .success { display: none; text-align: center; padding: 3rem 0; }
+  .success .s-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--success); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.75rem; margin-bottom: 1.25rem;
+  }
+  .success h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin: 0 0 0.5rem; }
+  .success p { color: var(--fg-muted); max-width: 380px; margin: 0 auto; font-size: 0.95rem; }
+
+  .hero-badge, .hero h1, .hero-hook, .hero-sub, .timer, .timer-label {
+    opacity: 0; transform: translateY(18px);
+    animation: heroIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-badge  { animation-delay: 0.1s; }
+  .hero h1     { animation-delay: 0.25s; }
+  .hero-hook   { animation-delay: 0.4s; }
+  .hero-sub    { animation-delay: 0.55s; }
+  .timer       { animation-delay: 0.7s; }
+  .timer-label { animation-delay: 0.8s; }
+
+  @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+
+  .stepper { opacity: 0; animation: heroIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards; }
+
+  .project-card, .opt-card {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .project-card.revealed, .opt-card.revealed { opacity: 1; transform: translateY(0); }
+  .project-card:active, .opt-card:active { transform: scale(0.985); }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none; opacity: 0.5;
+    animation: glowPulse 4s ease-in-out infinite; z-index: -1;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.35; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.6; transform: translateX(-50%) scale(1.08); }
+  }
+
+  .success.visible { display: block; animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes successPop {
+    from { opacity: 0; transform: scale(0.92) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="hero">
+    <div class="hero-badge"><span class="flash">&#128293;</span> BLACK FRIDAY 2026 &mdash; OFFRE SPECIALE</div>
+    <h1>Votre projet n'a jamais vu le jour.</h1>
+    <p class="hero-hook"><span class="gradient-text">Et si on le concretisait enfin ?</span></p>
+    <p class="hero-sub">Nous avions echange sur votre projet, mais il n'a pas abouti. Cette fois, profitez du Black Friday pour relancer votre projet avec une offre speciale et passez enfin a l'etape suivante.</p>
+
+    <div class="timer">
+      <div class="t-box"><span class="n" id="d">--</span><span class="l">Jours</span></div>
+      <div class="t-box"><span class="n" id="h">--</span><span class="l">Heures</span></div>
+      <div class="t-box"><span class="n" id="m">--</span><span class="l">Min</span></div>
+      <div class="t-box"><span class="n" id="s">--</span><span class="l">Sec</span></div>
+    </div>
+    <div class="timer-label">avant l'ouverture des offres Black Friday</div>
+  </div>
+
+  <div class="stepper">
+    <div class="step-pill active" id="sp1"><span class="num">1</span> Projet</div>
+    <div class="step-line" id="sl1"></div>
+    <div class="step-pill" id="sp2"><span class="num">2</span> Situation</div>
+    <div class="step-line" id="sl2"></div>
+    <div class="step-pill" id="sp3"><span class="num">3</span> Offre</div>
+  </div>
+
+  <p style="text-align:center;color:var(--fg-muted);font-size:0.95rem;margin:0 auto 1.5rem;max-width:480px;">Votre projet vous attend. Voyons ce qu'on peut faire ensemble en 2026.</p>
+
+  <form id="form" onsubmit="return false">
+
+    <!-- STEP 1 -->
+    <div class="form-step visible" id="step1">
+      <div class="section-head">
+        <h2>Retrouvez votre projet</h2>
+        <p>Selectionnez le projet dont on avait discute ensemble.</p>
+      </div>
+
+      <div class="project-grid" id="projects">
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="le-palmier-dor">
+          <div class="p-icon">&#127860;</div>
+          <div class="p-info"><div class="p-name">Le Palmier d'Or</div><div class="p-type">Site vitrine + Menu en ligne</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="maison-adja">
+          <div class="p-icon">&#128091;</div>
+          <div class="p-info"><div class="p-name">Maison Adja</div><div class="p-type">E-commerce mode africaine</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="clinique-gbeto">
+          <div class="p-icon">&#9879;</div>
+          <div class="p-info"><div class="p-name">Clinique Gbeto</div><div class="p-type">Site + Prise de RDV en ligne</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="fondation-soleil-davenir">
+          <div class="p-icon">&#127758;</div>
+          <div class="p-info"><div class="p-name">Fondation Soleil d'Avenir</div><div class="p-type">Site institutionnel + Dons en ligne</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="auto-ecole-la-victoire">
+          <div class="p-icon">&#128663;</div>
+          <div class="p-info"><div class="p-name">Auto-Ecole La Victoire</div><div class="p-type">App de gestion + Inscriptions</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="sika-immobilier">
+          <div class="p-icon">&#127968;</div>
+          <div class="p-info"><div class="p-name">Sika Immobilier</div><div class="p-type">Plateforme immobiliere</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="glam-by-nafi">
+          <div class="p-icon">&#128133;</div>
+          <div class="p-info"><div class="p-name">Glam by Nafi</div><div class="p-type">Site vitrine + Reservations</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="terre-davie">
+          <div class="p-icon">&#127793;</div>
+          <div class="p-info"><div class="p-name">Terre d'Avie</div><div class="p-type">E-commerce produits locaux</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="cabinet-maitre-hounkpatin">
+          <div class="p-icon">&#9878;</div>
+          <div class="p-info"><div class="p-name">Cabinet Me Hounkpatin</div><div class="p-type">Site vitrine + Blog juridique</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)">
+          <input type="radio" name="project" value="dako-events">
+          <div class="p-icon">&#127881;</div>
+          <div class="p-info"><div class="p-name">Dako Events</div><div class="p-type">Portfolio + Demande de devis</div></div>
+          <div class="p-check"></div>
+        </label>
+
+        <label class="project-card" onclick="selectProject(this)" style="border-color: var(--border-accent);">
+          <input type="radio" name="project" value="resa-sport-academy">
+          <div class="p-icon">&#9917;</div>
+          <div class="p-info"><div class="p-name">Resa Sport Academy</div><div class="p-type">App complete : inscriptions, camps, paiements</div></div>
+          <div class="p-check"></div>
+        </label>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn-primary" style="flex:1" onclick="goStep(2)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="form-step" id="step2">
+      <div class="section-head">
+        <h2>Qu'est-ce qui s'est passe ?</h2>
+        <p>Nous vous ecoutons pour vous preparer une offre qui repond vraiment a vos attentes.</p>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Le frein principal, c'etait quoi ?</span>
+        <div class="opt-grid" id="objections">
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="objection" value="prix">
+            <span class="opt-emoji">&#128176;</span>
+            <div class="opt-body">
+              <div class="opt-title">Le prix ne passait pas</div>
+              <div class="opt-desc">Le devis depassait ce que je pouvais mettre a ce moment-la</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="objection" value="pas-le-moment">
+            <span class="opt-emoji">&#9200;</span>
+            <div class="opt-body">
+              <div class="opt-title">C'etait pas le bon moment</div>
+              <div class="opt-desc">Trop de choses en meme temps, j'ai remis a plus tard</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="objection" value="pas-convaincu">
+            <span class="opt-emoji">&#129300;</span>
+            <div class="opt-body">
+              <div class="opt-title">Je n'etais pas 100% convaincu</div>
+              <div class="opt-desc">Pas sur que ca allait vraiment m'apporter des clients</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="objection" value="autre-offre">
+            <span class="opt-emoji">&#128101;</span>
+            <div class="opt-body">
+              <div class="opt-title">J'ai eu une autre proposition</div>
+              <div class="opt-desc">Quelqu'un m'a propose moins cher ou differemment</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="objection" value="complique">
+            <span class="opt-emoji">&#128565;</span>
+            <div class="opt-body">
+              <div class="opt-title">Ca me semblait trop complique</div>
+              <div class="opt-desc">Je ne savais pas exactement ce que je voulais ni comment ca marche</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="objection" value="confiance">
+            <span class="opt-emoji">&#128556;</span>
+            <div class="opt-body">
+              <div class="opt-title">J'avais peur d'etre decu</div>
+              <div class="opt-desc">On m'a deja fait des promesses non tenues avant</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="q-autre-offre" style="display:none">
+        <span class="field-label">Cette autre proposition, ca a donne quoi ?</span>
+        <select id="autre-result">
+          <option value="">Choisissez...</option>
+          <option value="pas-fait">Finalement, ca ne s'est pas fait non plus</option>
+          <option value="fait-decu">Ca s'est fait mais je suis decu du resultat</option>
+          <option value="fait-ok">Ca s'est fait et c'est correct</option>
+          <option value="en-cours">C'est encore en cours</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Aujourd'hui, ce projet vous le voulez toujours ?</span>
+        <div class="scale-row" id="urgency-scale">
+          <div class="scale-btn" onclick="selectScale('urgency',1,this)">1</div>
+          <div class="scale-btn" onclick="selectScale('urgency',2,this)">2</div>
+          <div class="scale-btn" onclick="selectScale('urgency',3,this)">3</div>
+          <div class="scale-btn" onclick="selectScale('urgency',4,this)">4</div>
+          <div class="scale-btn" onclick="selectScale('urgency',5,this)">5</div>
+        </div>
+        <div class="scale-labels"><span>Pas vraiment</span><span>C'est urgent</span></div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Quel budget pouvez-vous consacrer a votre projet ?</span>
+        <select id="budget">
+          <option value="">Choisissez...</option>
+          <option value="moins-100k">Moins de 100 000 FCFA</option>
+          <option value="100-200k">100 000 – 200 000 FCFA</option>
+          <option value="200-350k">200 000 – 350 000 FCFA</option>
+          <option value="350-500k">350 000 – 500 000 FCFA</option>
+          <option value="500k+">Plus de 500 000 FCFA</option>
+          <option value="paiement-echelonne">Je prefere payer en plusieurs fois</option>
+        </select>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn btn-ghost" onclick="goStep(1)">Retour</button>
+        <button type="button" class="btn btn-primary" onclick="goStep(3)">Continuer</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="form-step" id="step3">
+      <div class="section-head">
+        <h2>Derniere etape</h2>
+        <p>On finalise votre demande pour vous proposer l'offre la plus adaptee.</p>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Qu'est-ce qui vous ferait dire "oui" cette fois ?</span>
+        <div class="opt-grid" id="triggers">
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="trigger" value="prix-reduit">
+            <span class="opt-emoji">&#128293;</span>
+            <div class="opt-body">
+              <div class="opt-title">Un prix vraiment reduit</div>
+              <div class="opt-desc">Une remise significative pour le Black Friday</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="trigger" value="paiement-echelonne">
+            <span class="opt-emoji">&#128179;</span>
+            <div class="opt-body">
+              <div class="opt-title">Pouvoir payer en plusieurs fois</div>
+              <div class="opt-desc">Etaler le paiement sur 2-3 mois</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="trigger" value="garantie">
+            <span class="opt-emoji">&#128170;</span>
+            <div class="opt-body">
+              <div class="opt-title">Une garantie "satisfait ou rembourse"</div>
+              <div class="opt-desc">Etre rembourse si le resultat ne me plait pas</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="trigger" value="voir-avant">
+            <span class="opt-emoji">&#128064;</span>
+            <div class="opt-body">
+              <div class="opt-title">Voir un apercu avant de payer</div>
+              <div class="opt-desc">Une maquette ou demo gratuite pour me projeter</div>
+            </div>
+          </label>
+
+          <label class="opt-card" onclick="toggleOpt(this)">
+            <input type="checkbox" name="trigger" value="bonus">
+            <span class="opt-emoji">&#127873;</span>
+            <div class="opt-body">
+              <div class="opt-title">Des bonus offerts</div>
+              <div class="opt-desc">Logo, domaine, hebergement ou maintenance inclus</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Sur une echelle de 1 a 5, a quel point vous nous faites confiance pour livrer ?</span>
+        <div class="scale-row" id="trust-scale">
+          <div class="scale-btn" onclick="selectScale('trust',1,this)">1</div>
+          <div class="scale-btn" onclick="selectScale('trust',2,this)">2</div>
+          <div class="scale-btn" onclick="selectScale('trust',3,this)">3</div>
+          <div class="scale-btn" onclick="selectScale('trust',4,this)">4</div>
+          <div class="scale-btn" onclick="selectScale('trust',5,this)">5</div>
+        </div>
+        <div class="scale-labels"><span>Pas du tout</span><span>Totalement</span></div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">Votre email <span class="field-hint">(pour recevoir l'offre)</span></span>
+        <input type="email" id="email" placeholder="votre@email.com">
+      </div>
+
+      <div class="field">
+        <span class="field-label">Un dernier mot ? <span class="field-hint">(facultatif)</span></span>
+        <textarea id="message" placeholder="Ce que vous aimeriez qu'on sache, une question, un doute..."></textarea>
+      </div>
+
+      <div class="nav-row" style="flex-direction:column; gap:0.5rem;">
+        <button type="button" class="btn btn-primary btn-big" onclick="submitForm()">
+          &#9889; Recevoir mon offre Black Friday
+        </button>
+        <p class="privacy">Confidentiel. Aucun spam. On vous contacte uniquement pour l'offre.</p>
+      </div>
+
+      <div class="nav-row" style="margin-top:0.5rem;">
+        <button type="button" class="btn btn-ghost" onclick="goStep(2)">Retour</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="success" id="success">
+    <div class="s-icon">&#10003;</div>
+    <h2>C'est note !</h2>
+    <p>On prepare votre offre personnalisee. Vous recevrez quelque chose de special avant le Black Friday. Restez connecte.</p>
+  </div>
+
+  <div class="proof">
+    <div class="proof-item"><div class="pn">47</div><div class="pl">projets livres</div></div>
+    <div class="proof-item"><div class="pn">96%</div><div class="pl">clients satisfaits</div></div>
+    <div class="proof-item"><div class="pn">14j</div><div class="pl">delai moyen</div></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var bf = new Date('2026-11-27T00:00:00+01:00');
+  function tick(){
+    var now = new Date();
+    var diff = bf - now;
+    if(diff<0) diff=0;
+    document.getElementById('d').textContent = String(Math.floor(diff/864e5)).padStart(2,'0');
+    document.getElementById('h').textContent = String(Math.floor((diff%864e5)/36e5)).padStart(2,'0');
+    document.getElementById('m').textContent = String(Math.floor((diff%36e5)/6e4)).padStart(2,'0');
+    document.getElementById('s').textContent = String(Math.floor((diff%6e4)/1e3)).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+var formData = { project:'', objections:[], urgency:0, budget:'', triggers:[], trust:0, email:'', message:'', autreResult:'' };
+var currentStep = 1;
+
+function goStep(n) {
+  document.getElementById('step'+currentStep).classList.remove('visible');
+  document.getElementById('step'+n).classList.add('visible');
+  currentStep = n;
+
+  for(var i=1;i<=3;i++){
+    var pill = document.getElementById('sp'+i);
+    var line = document.getElementById('sl'+(i-1));
+    pill.classList.remove('active','done');
+    if(line) line.classList.remove('done');
+    if(i < n){ pill.classList.add('done'); if(line) line.classList.add('done'); }
+    else if(i === n){ pill.classList.add('active'); }
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function selectProject(el) {
+  var cards = document.querySelectorAll('.project-card');
+  for(var i=0;i<cards.length;i++) cards[i].classList.remove('selected');
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  formData.project = el.querySelector('input').value;
+}
+
+function toggleOpt(el) {
+  var cb = el.querySelector('input');
+  setTimeout(function(){
+    el.classList.toggle('selected', cb.checked);
+    if(cb.name === 'objection' && cb.value === 'autre-offre'){
+      document.getElementById('q-autre-offre').style.display = cb.checked ? 'block' : 'none';
+    }
+  }, 10);
+}
+
+function selectScale(key, val, el) {
+  formData[key] = val;
+  var row = el.parentElement;
+  var btns = row.querySelectorAll('.scale-btn');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('selected');
+  el.classList.add('selected');
+}
+
+function submitForm() {
+  var email = document.getElementById('email').value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Veuillez entrer une adresse email valide.');
+    return;
+  }
+
+  formData.objections = [];
+  var obs = document.querySelectorAll('input[name="objection"]:checked');
+  for(var i=0;i<obs.length;i++) formData.objections.push(obs[i].value);
+
+  formData.triggers = [];
+  var trigs = document.querySelectorAll('input[name="trigger"]:checked');
+  for(var i=0;i<trigs.length;i++) formData.triggers.push(trigs[i].value);
+
+  formData.budget = document.getElementById('budget').value;
+  formData.email = email;
+  formData.message = document.getElementById('message').value.trim();
+  formData.autreResult = document.getElementById('autre-result').value;
+  formData.submitted_at = new Date().toISOString();
+
+  var submitBtn = document.querySelector('.btn-big');
+  var btnText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '&#9203; Envoi en cours...';
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '0.7';
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/submit', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      document.getElementById('form').style.display = 'none';
+      document.querySelector('.stepper').style.display = 'none';
+      var suc = document.getElementById('success');
+      suc.style.display = 'block';
+      suc.classList.add('visible');
+      window.scrollTo({top:0,behavior:'smooth'});
+    } else {
+      submitBtn.innerHTML = btnText;
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      alert('Une erreur est survenue. Veuillez reessayer.');
+    }
+  };
+  xhr.onerror = function() {
+    submitBtn.innerHTML = btnText;
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '1';
+    alert('Erreur de connexion. Verifiez votre internet et reessayez.');
+  };
+  xhr.send(JSON.stringify(formData));
+}
+
+function revealCards(stepEl) {
+  var cards = stepEl.querySelectorAll('.project-card, .opt-card');
+  for (var i = 0; i < cards.length; i++) {
+    (function(card, delay) {
+      setTimeout(function() { card.classList.add('revealed'); }, delay);
+    })(cards[i], i * 60);
+  }
+}
+
+var _origGoStep = goStep;
+goStep = function(n) {
+  _origGoStep(n);
+  var stepEl = document.getElementById('step' + n);
+  revealCards(stepEl);
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    revealCards(document.getElementById('step1'));
+  }, 1000);
+});
+</script>
+</body>
+</html>
