@@ -11,27 +11,26 @@
 
 <style>
   :root {
-    --bg: #090a0f;
-    --surface: #11131a;
-    --surface-hover: #161924;
-    --surface-active: rgba(245, 158, 11, 0.08);
+    --bg: #090a10;
+    --card-bg: rgba(255, 255, 255, 0.025);
+    --card-hover: rgba(255, 255, 255, 0.045);
     --border: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(255, 255, 255, 0.16);
-    --border-accent: rgba(245, 158, 11, 0.45);
+    --border-accent: rgba(245, 158, 11, 0.4);
     
     --fg: #f8fafc;
     --fg-muted: #94a3b8;
     --fg-dim: #64748b;
     
     --accent: #f59e0b;
-    --accent-glow: rgba(245, 158, 11, 0.25);
+    --accent-glow: rgba(245, 158, 11, 0.2);
     --accent-hover: #fbbf24;
-    --gradient-gold: linear-gradient(135deg, #f59e0b, #f97316, #ef4444);
+    --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #ef4444 100%);
     --success: #10b981;
     
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
     
     --font-heading: 'Syne', system-ui, -apple-system, sans-serif;
     --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -49,86 +48,84 @@
     color: var(--fg);
     font-family: var(--font-body);
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
     scroll-behavior: smooth;
   }
 
   body {
     background: var(--bg);
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
+    overflow-x: hidden;
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Glow d'ambiance */
+  /* Halo d'ambiance ultra doux en haut */
   body::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    width: min(100vw, 650px);
-    height: 380px;
-    background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.15), transparent 70%);
+    width: min(100vw, 800px);
+    height: 480px;
+    background: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.12), transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
 
   .container {
     width: 100%;
-    max-width: 580px;
+    max-width: 620px;
     margin: 0 auto;
-    padding: 1.25rem 1rem 3.5rem;
+    padding: 2.5rem 1.25rem 5rem;
     position: relative;
     z-index: 1;
   }
 
-  /* --- HERO --- */
+  /* --- HEADER / HERO AÉRÉ --- */
   .hero {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3.5rem;
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    background: rgba(245, 158, 11, 0.12);
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    gap: 0.5rem;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
     color: var(--accent);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.35rem 0.85rem;
+    padding: 0.45rem 1rem;
     border-radius: 999px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.75rem;
   }
 
-  .badge-pulse {
-    display: inline-block;
-    animation: pulse 1.8s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.15); }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
   }
 
   h1 {
     font-family: var(--font-heading);
-    font-size: clamp(1.65rem, 5vw + 0.5rem, 2.35rem);
+    font-size: clamp(1.85rem, 6vw, 2.75rem);
     font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 0.6rem;
-    letter-spacing: -0.02em;
+    line-height: 1.18;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.025em;
   }
 
   .hero-hook {
-    font-size: clamp(1.05rem, 3vw, 1.25rem);
+    font-size: clamp(1.15rem, 3.5vw, 1.45rem);
     font-weight: 700;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.25rem;
     background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -137,259 +134,283 @@
 
   .hero-sub {
     color: var(--fg-muted);
-    font-size: 0.92rem;
-    line-height: 1.55;
-    margin: 0 auto 1.5rem;
-    max-width: 440px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin: 0 auto 2.25rem;
+    max-width: 480px;
   }
 
-  /* --- TIMER COMPACT & RESPONSIVE --- */
-  .timer-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1rem 0.75rem;
-    margin-bottom: 1.75rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  /* --- TIMER : FLOTTANT & MINIMALISTE (NON ENFERMÉ) --- */
+  .timer-section {
+    margin-bottom: 3.5rem;
   }
 
-  .timer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.4rem;
+  .timer-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.85rem;
   }
 
-  .timer-box {
-    background: rgba(255, 255, 255, 0.02);
+  .timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+    padding: 0.75rem 0.5rem;
+    background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
-    padding: 0.5rem 0.25rem;
-    text-align: center;
   }
 
-  .timer-num {
+  .timer-number {
     font-family: var(--font-heading);
+    font-size: 1.65rem;
     font-weight: 800;
-    font-size: 1.35rem;
     color: var(--accent);
     line-height: 1.1;
     font-variant-numeric: tabular-nums;
   }
 
-  .timer-lbl {
+  .timer-label {
     font-size: 0.65rem;
     color: var(--fg-dim);
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    margin-top: 0.2rem;
+    letter-spacing: 0.06em;
+    margin-top: 0.35rem;
   }
 
   .timer-caption {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--fg-dim);
     text-align: center;
-    margin-top: 0.6rem;
+    margin-top: 0.85rem;
   }
 
-  /* --- STEPPER (Mobile-Friendly) --- */
-  .stepper {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.75rem;
+  /* --- PROGRESSION / STEPPER DISCRET --- */
+  .stepper-wrap {
+    margin-bottom: 2.75rem;
   }
 
-  .stepper-header {
+  .stepper-meta {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
+    align-items: baseline;
+    margin-bottom: 0.65rem;
   }
 
-  .stepper-step-name {
+  .stepper-current {
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--fg);
   }
 
-  .stepper-progress-text {
-    color: var(--accent);
+  .stepper-count {
+    font-size: 0.78rem;
     font-weight: 700;
-    font-size: 0.75rem;
+    color: var(--accent);
   }
 
-  .stepper-bar {
+  .stepper-track {
+    height: 3px;
     width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
     border-radius: 999px;
     overflow: hidden;
   }
 
-  .stepper-bar-fill {
+  .stepper-thumb {
     height: 100%;
     width: 25%;
     background: var(--gradient-gold);
-    transition: width 0.3s ease;
+    transition: width 0.35s ease;
   }
 
-  .section-head {
+  /* --- ENTÊTES DE SECTIONS --- */
+  .section-intro {
+    margin-bottom: 2rem;
+  }
+
+  .section-intro h2 {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+  }
+
+  .section-intro p {
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  /* --- FILTRE RAPIDE PROJET (ÉVITE DE SCROLLER 11 CARTES) --- */
+  .search-wrap {
     margin-bottom: 1.25rem;
   }
 
-  .section-head h2 {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 0.25rem;
+  .search-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    color: var(--fg);
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s;
   }
 
-  .section-head p {
-    font-size: 0.88rem;
-    color: var(--fg-muted);
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
   }
 
-  /* --- FORM CARDS & GRIDS --- */
-  .selection-list {
+  /* --- LISTE DES PROJETS & OPTIONS : FIN & ÉPURÉ --- */
+  .options-stack {
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.75rem;
+    margin-bottom: 2.25rem;
   }
 
-  .card-option {
+  .choice-card {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
-    background: var(--surface);
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    background: var(--card-bg);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 0.85rem 0.95rem;
     cursor: pointer;
-    position: relative;
-    transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+    transition: all 0.2s ease;
     user-select: none;
   }
 
-  .card-option:active {
-    transform: scale(0.985);
-  }
-
-  .card-option:hover {
+  .choice-card:hover {
+    background: var(--card-hover);
     border-color: var(--border-hover);
-    background: var(--surface-hover);
   }
 
-  .card-option input {
+  .choice-card:active {
+    transform: scale(0.99);
+  }
+
+  .choice-card input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 
-  .card-option:has(input:checked) {
-    background: var(--surface-active);
+  .choice-card:has(input:checked) {
+    background: rgba(245, 158, 11, 0.06);
     border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent-glow);
+    box-shadow: 0 4px 18px var(--accent-glow);
   }
 
-  .card-icon {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+  .choice-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.04);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    transition: background 0.2s;
   }
 
-  .card-option:has(input:checked) .card-icon {
+  .choice-card:has(input:checked) .choice-icon {
     background: var(--accent);
   }
 
-  .card-body {
+  .choice-content {
     flex: 1;
     min-width: 0;
   }
 
-  .card-title {
+  .choice-title {
+    font-size: 0.95rem;
     font-weight: 600;
-    font-size: 0.92rem;
-    line-height: 1.3;
     color: var(--fg);
+    line-height: 1.3;
   }
 
-  .card-desc {
-    font-size: 0.78rem;
+  .choice-desc {
+    font-size: 0.8rem;
     color: var(--fg-muted);
-    line-height: 1.35;
-    margin-top: 0.15rem;
+    margin-top: 0.2rem;
+    line-height: 1.4;
   }
 
-  .card-indicator {
+  .choice-check {
     width: 20px;
     height: 20px;
     min-width: 20px;
     border-radius: 50%;
-    border: 2px solid var(--border-hover);
+    border: 1.5px solid var(--border-hover);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
   }
 
-  .card-option:has(input[type="checkbox"]) .card-indicator {
+  .choice-card:has(input[type="checkbox"]) .choice-check {
     border-radius: 6px;
   }
 
-  .card-option:has(input:checked) .card-indicator {
-    border-color: var(--accent);
+  .choice-card:has(input:checked) .choice-check {
     background: var(--accent);
+    border-color: var(--accent);
   }
 
-  .card-option:has(input:checked) .card-indicator::after {
+  .choice-card:has(input:checked) .choice-check::after {
     content: '✓';
-    color: #000;
     font-size: 0.72rem;
+    color: #000;
     font-weight: 800;
   }
 
-  /* --- FORM CONTROLS (Min 16px to prevent iOS auto-zoom) --- */
-  .field {
-    margin-bottom: 1.35rem;
+  /* --- QUESTION BLOCKS (ESPACEMENT GÉNÉREUX) --- */
+  .question-block {
+    margin-bottom: 2.75rem;
   }
 
-  .field-label {
+  .question-label {
     display: block;
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.85rem;
     color: var(--fg);
+    line-height: 1.45;
   }
 
-  .field-hint {
+  .question-hint {
     font-weight: 400;
     color: var(--fg-dim);
-    font-size: 0.8rem;
-    margin-left: 0.25rem;
+    font-size: 0.82rem;
+    display: inline-block;
+    margin-left: 0.35rem;
   }
 
+  /* --- INPUTS & CONTROLS --- */
   input[type="text"],
   input[type="email"],
   select,
   textarea {
     width: 100%;
-    background: var(--surface);
+    background: var(--card-bg);
     color: var(--fg);
     border: 1.5px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 0.85rem 1rem;
+    padding: 0.95rem 1.15rem;
     font-family: inherit;
-    font-size: 16px; /* Empêche le zoom Safari */
-    line-height: 1.4;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    font-size: 16px; /* Empêche le zoom iOS */
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
 
   input:focus,
@@ -398,11 +419,13 @@
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-glow);
+    background: rgba(255, 255, 255, 0.04);
   }
 
   textarea {
-    min-height: 95px;
+    min-height: 105px;
     resize: vertical;
+    line-height: 1.55;
   }
 
   select {
@@ -410,26 +433,33 @@
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.75rem;
+    background-position: right 1.15rem center;
+    padding-right: 3rem;
   }
 
-  /* --- SCALE RATINGS (1-5) --- */
-  .scale-group {
+  /* --- ÉCHELLES DE NOTATION (1 à 5) --- */
+  .scale-container {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1rem;
+  }
+
+  .scale-track {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0.4rem;
+    gap: 0.5rem;
   }
 
   .scale-btn {
-    min-height: 46px;
-    background: var(--surface);
-    border: 1.5px solid var(--border);
+    min-height: 48px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     color: var(--fg-muted);
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -437,8 +467,9 @@
     transition: all 0.15s ease;
   }
 
-  .scale-btn:active {
-    transform: scale(0.95);
+  .scale-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--fg);
   }
 
   .scale-btn.selected {
@@ -448,40 +479,40 @@
     box-shadow: 0 4px 14px var(--accent-glow);
   }
 
-  .scale-labels {
+  .scale-legend {
     display: flex;
     justify-content: space-between;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--fg-dim);
-    margin-top: 0.4rem;
-    padding: 0 0.15rem;
+    margin-top: 0.85rem;
+    padding: 0 0.25rem;
   }
 
-  /* --- ACTIONS & BUTTONS --- */
-  .nav-buttons {
+  /* --- BOUTONS D'ACTION (RESPONSIVE & TOUCH) --- */
+  .action-bar {
     display: flex;
-    gap: 0.65rem;
-    margin-top: 2rem;
+    gap: 0.85rem;
+    margin-top: 3rem;
   }
 
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 0.75rem 1.25rem;
+    min-height: 52px;
+    padding: 0.85rem 1.5rem;
     border-radius: var(--radius-md);
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     border: none;
     cursor: pointer;
-    transition: transform 0.1s ease, background 0.15s ease, opacity 0.15s ease;
+    transition: transform 0.1s, opacity 0.2s, background 0.2s;
     user-select: none;
   }
 
   .btn:active {
-    transform: scale(0.98);
+    transform: scale(0.985);
   }
 
   .btn-primary {
@@ -495,9 +526,9 @@
   }
 
   .btn-ghost {
-    background: var(--surface);
+    background: transparent;
     color: var(--fg-muted);
-    border: 1.5px solid var(--border);
+    border: 1px solid var(--border);
     flex: 1;
   }
 
@@ -506,114 +537,115 @@
     border-color: var(--border-hover);
   }
 
-  .btn-submit {
+  .btn-cta {
     width: 100%;
-    min-height: 52px;
-    background: var(--accent);
+    min-height: 56px;
+    background: var(--gradient-gold);
     color: #000;
-    font-size: 1rem;
+    font-size: 1.05rem;
+    font-weight: 800;
     border-radius: var(--radius-md);
-    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
+    box-shadow: 0 6px 28px rgba(245, 158, 11, 0.3);
   }
 
-  .privacy-note {
-    font-size: 0.72rem;
-    color: var(--fg-dim);
+  .security-badge {
     text-align: center;
-    margin-top: 0.65rem;
+    font-size: 0.75rem;
+    color: var(--fg-dim);
+    margin-top: 0.85rem;
   }
 
-  /* --- SOCIAL PROOF --- */
-  .proof {
+  /* --- STATS SOCIAL PROOF --- */
+  .proof-bar {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
+    gap: 1.25rem;
+    margin-top: 4.5rem;
+    padding-top: 2rem;
     border-top: 1px solid var(--border);
     text-align: center;
   }
 
-  .proof-num {
+  .proof-val {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.45rem;
     color: var(--accent);
   }
 
-  .proof-label {
-    font-size: 0.7rem;
+  .proof-txt {
+    font-size: 0.72rem;
     color: var(--fg-dim);
     text-transform: uppercase;
     font-weight: 600;
-    margin-top: 0.15rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.2rem;
   }
 
-  /* --- FORM STEPS TOGGLING --- */
-  .form-step {
+  /* --- GESTION DES ÉTAPES --- */
+  .step-screen {
     display: none;
   }
 
-  .form-step.active {
+  .step-screen.active {
     display: block;
-    animation: fadeIn 0.25s ease-out;
+    animation: stageIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+  @keyframes stageIn {
+    from { opacity: 0; transform: translateY(12px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* --- SUCCESS SCREEN --- */
-  .success-panel {
+  /* --- SUCCESS CONFIRMATION --- */
+  .success-box {
     display: none;
     text-align: center;
-    padding: 3rem 1rem;
-    background: var(--surface);
-    border: 1.5px solid var(--border);
+    padding: 3.5rem 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
   }
 
-  .success-panel.active {
+  .success-box.active {
     display: block;
-    animation: fadeIn 0.3s ease-out;
+    animation: stageIn 0.35s ease-out;
   }
 
   .success-icon {
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    height: 68px;
     background: var(--success);
     color: #fff;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-    box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.35);
   }
 
-  .success-panel h2 {
+  .success-box h2 {
     font-family: var(--font-heading);
-    font-size: 1.45rem;
+    font-size: 1.65rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.65rem;
   }
 
-  .success-panel p {
+  .success-box p {
     color: var(--fg-muted);
-    font-size: 0.92rem;
-    max-width: 420px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    max-width: 440px;
     margin: 0 auto;
   }
 
-  /* --- NOTIFICATION MICRO-ERROR --- */
-  .field-error-msg {
+  .error-text {
     color: #ef4444;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    margin-top: 0.4rem;
+    margin-top: 0.5rem;
     display: none;
   }
 </style>
@@ -621,486 +653,499 @@
 <body>
 
 <div class="container">
-  
-  <!-- HERO SECTION -->
+
+  <!-- HERO BANNER -->
   <header class="hero">
     <div class="badge">
-      <span class="badge-pulse">🔥</span> Black Friday 2026 — Offre Spéciale
+      <span class="badge-dot"></span> Black Friday 2026 — Offre Spéciale
     </div>
     <h1>Votre projet n'a jamais vu le jour.</h1>
     <p class="hero-hook">Et si on le concrétisait enfin ?</p>
-    <p class="hero-sub">Nous avions échangé sur votre projet sans aboutir. Profitez des offres exceptionnelles du Black Friday pour le relancer sereinement.</p>
+    <p class="hero-sub">Nous avions posé les premières bases ensemble sans finaliser. Cette offre Black Friday exclusive est pensée pour débloquer la suite.</p>
 
-    <!-- COUNTDOWN -->
-    <div class="timer-wrap">
-      <div class="timer">
-        <div class="timer-box">
-          <div class="timer-num" id="d">--</div>
-          <div class="timer-lbl">Jours</div>
+    <!-- COMPTE À REBOURS AÉRÉ -->
+    <div class="timer-section">
+      <div class="timer-grid">
+        <div class="timer-unit">
+          <span class="timer-number" id="d">--</span>
+          <span class="timer-label">Jours</span>
         </div>
-        <div class="timer-box">
-          <div class="timer-num" id="h">--</div>
-          <div class="timer-lbl">Heures</div>
+        <div class="timer-unit">
+          <span class="timer-number" id="h">--</span>
+          <span class="timer-label">Heures</span>
         </div>
-        <div class="timer-box">
-          <div class="timer-num" id="m">--</div>
-          <div class="timer-lbl">Min</div>
+        <div class="timer-unit">
+          <span class="timer-number" id="m">--</span>
+          <span class="timer-label">Min</span>
         </div>
-        <div class="timer-box">
-          <div class="timer-num" id="s">--</div>
-          <div class="timer-lbl">Sec</div>
+        <div class="timer-unit">
+          <span class="timer-number" id="s">--</span>
+          <span class="timer-label">Sec</span>
         </div>
       </div>
-      <div class="timer-caption">avant l'ouverture des offres exclusives</div>
+      <div class="timer-caption">avant l'ouverture officielle des propositions</div>
     </div>
   </header>
 
-  <!-- STEP PROGRESS BAR -->
-  <div class="stepper" id="stepper">
-    <div class="stepper-header">
-      <span class="stepper-step-name" id="stepper-title">Étape 1 : Retrouvez votre projet</span>
-      <span class="stepper-progress-text" id="stepper-count">1 sur 4</span>
+  <!-- PROGRESSION AÉRÉE (SANS ENCADREMENT LOURD) -->
+  <div class="stepper-wrap" id="stepper">
+    <div class="stepper-meta">
+      <span class="stepper-current" id="stepper-label">Étape 1 : Retrouvez votre projet</span>
+      <span class="stepper-count" id="stepper-index">1 / 4</span>
     </div>
-    <div class="stepper-bar">
-      <div class="stepper-bar-fill" id="stepper-bar"></div>
+    <div class="stepper-track">
+      <div class="stepper-thumb" id="stepper-bar"></div>
     </div>
   </div>
 
   <form id="offerForm" onsubmit="return false">
 
     <!-- ÉTAPE 1 : PROJET -->
-    <section class="form-step active" id="step1">
-      <div class="section-head">
+    <div class="step-screen active" id="step1">
+      <div class="section-intro">
         <h2>Quel était votre projet ?</h2>
-        <p>Sélectionnez le projet dont nous avions discuté ensemble.</p>
+        <p>Sélectionnez le dossier dont nous avions discuté.</p>
       </div>
 
-      <div class="selection-list">
-        <label class="card-option">
+      <!-- Recherche rapide pour éviter de scroller sans fin -->
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="projectSearch" placeholder="🔍 Filtrer par nom (ex: Palmier, Gbeto, Clinique...)" oninput="filterProjects(this.value)">
+      </div>
+
+      <div class="options-stack" id="projectsContainer">
+        <label class="choice-card" data-title="le palmier dor restaurant menu">
           <input type="radio" name="project" value="le-palmier-dor">
-          <div class="card-icon">🍽️</div>
-          <div class="card-body">
-            <div class="card-title">Le Palmier d'Or</div>
-            <div class="card-desc">Site vitrine + Menu en ligne</div>
+          <div class="choice-icon">🍽️</div>
+          <div class="choice-content">
+            <div class="choice-title">Le Palmier d'Or</div>
+            <div class="choice-desc">Site vitrine + Menu interactif en ligne</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="maison adja e-commerce mode boutique">
           <input type="radio" name="project" value="maison-adja">
-          <div class="card-icon">👗</div>
-          <div class="card-body">
-            <div class="card-title">Maison Adja</div>
-            <div class="card-desc">E-commerce mode africaine</div>
+          <div class="choice-icon">👗</div>
+          <div class="choice-content">
+            <div class="choice-title">Maison Adja</div>
+            <div class="choice-desc">E-commerce de mode africaine contemporaine</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="clinique gbeto sante prise rdv">
           <input type="radio" name="project" value="clinique-gbeto">
-          <div class="card-icon">⚕️</div>
-          <div class="card-body">
-            <div class="card-title">Clinique Gbeto</div>
-            <div class="card-desc">Site + Prise de RDV en ligne</div>
+          <div class="choice-icon">⚕️</div>
+          <div class="choice-content">
+            <div class="choice-title">Clinique Gbeto</div>
+            <div class="choice-desc">Portail patient + Prise de rendez-vous en ligne</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="fondation soleil davenir ong dons">
           <input type="radio" name="project" value="fondation-soleil-davenir">
-          <div class="card-icon">🌍</div>
-          <div class="card-body">
-            <div class="card-title">Fondation Soleil d'Avenir</div>
-            <div class="card-desc">Site institutionnel + Dons en ligne</div>
+          <div class="choice-icon">🌍</div>
+          <div class="choice-content">
+            <div class="choice-title">Fondation Soleil d'Avenir</div>
+            <div class="choice-desc">Site institutionnel avec module de dons sécurisé</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="auto ecole victoire permis inscriptions">
           <input type="radio" name="project" value="auto-ecole-la-victoire">
-          <div class="card-icon">🚗</div>
-          <div class="card-body">
-            <div class="card-title">Auto-École La Victoire</div>
-            <div class="card-desc">App de gestion + Inscriptions</div>
+          <div class="choice-icon">🚗</div>
+          <div class="choice-content">
+            <div class="choice-title">Auto-École La Victoire</div>
+            <div class="choice-desc">Application de gestion des plannings & inscriptions</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="sika immobilier annonces plateforme">
           <input type="radio" name="project" value="sika-immobilier">
-          <div class="card-icon">🏠</div>
-          <div class="card-body">
-            <div class="card-title">Sika Immobilier</div>
-            <div class="card-desc">Plateforme immobilière</div>
+          <div class="choice-icon">🏠</div>
+          <div class="choice-content">
+            <div class="choice-title">Sika Immobilier</div>
+            <div class="choice-desc">Plateforme d'annonces de vente et location</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="glam by nafi beaute reservations salon">
           <input type="radio" name="project" value="glam-by-nafi">
-          <div class="card-icon">💅</div>
-          <div class="card-body">
-            <div class="card-title">Glam by Nafi</div>
-            <div class="card-desc">Site vitrine + Réservations</div>
+          <div class="choice-icon">💅</div>
+          <div class="choice-content">
+            <div class="choice-title">Glam by Nafi</div>
+            <div class="choice-desc">Vitrine beauté avec réservation de prestations</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="terre davie produits locaux alimentation">
           <input type="radio" name="project" value="terre-davie">
-          <div class="card-icon">🌱</div>
-          <div class="card-body">
-            <div class="card-title">Terre d'Avie</div>
-            <div class="card-desc">E-commerce produits locaux</div>
+          <div class="choice-icon">🌱</div>
+          <div class="choice-content">
+            <div class="choice-title">Terre d'Avie</div>
+            <div class="choice-desc">Boutique en ligne pour produits du terroir</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="cabinet maitre hounkpatin avocat droit">
           <input type="radio" name="project" value="cabinet-maitre-hounkpatin">
-          <div class="card-icon">⚖️</div>
-          <div class="card-body">
-            <div class="card-title">Cabinet Me Hounkpatin</div>
-            <div class="card-desc">Site vitrine + Blog juridique</div>
+          <div class="choice-icon">⚖️</div>
+          <div class="choice-content">
+            <div class="choice-title">Cabinet Me Hounkpatin</div>
+            <div class="choice-desc">Site professionnel juridique avec blog d'actualités</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option">
+        <label class="choice-card" data-title="dako events evenementiel portfolio devis">
           <input type="radio" name="project" value="dako-events">
-          <div class="card-icon">🎉</div>
-          <div class="card-body">
-            <div class="card-title">Dako Events</div>
-            <div class="card-desc">Portfolio + Demande de devis</div>
+          <div class="choice-icon">🎉</div>
+          <div class="choice-content">
+            <div class="choice-title">Dako Events</div>
+            <div class="choice-desc">Portfolio événementiel & formulaire de chiffrage</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
 
-        <label class="card-option" style="border-color: var(--border-accent);">
+        <label class="choice-card" data-title="resa sport academy football gestion" style="border-color: var(--border-accent);">
           <input type="radio" name="project" value="resa-sport-academy">
-          <div class="card-icon">⚽</div>
-          <div class="card-body">
-            <div class="card-title">Resa Sport Academy</div>
-            <div class="card-desc">App complète : inscriptions, camps, paiements</div>
+          <div class="choice-icon">⚽</div>
+          <div class="choice-content">
+            <div class="choice-title">Resa Sport Academy</div>
+            <div class="choice-desc">Plateforme complète : inscriptions, stages, paiements</div>
           </div>
-          <div class="card-indicator"></div>
+          <div class="choice-check"></div>
         </label>
       </div>
 
-      <div class="field-error-msg" id="error-step1">Veuillez sélectionner un projet pour continuer.</div>
+      <div class="error-text" id="err-step1">Veuillez sélectionner un projet pour continuer.</div>
 
-      <div class="nav-buttons">
-        <button type="button" class="btn btn-primary" onclick="validateAndGo(2)">Continuer</button>
+      <div class="action-bar">
+        <button type="button" class="btn btn-primary" onclick="proceedToStep(2)">Continuer vers l'étape 2</button>
       </div>
-    </section>
+    </div>
 
     <!-- ÉTAPE 2 : SITUATION -->
-    <section class="form-step" id="step2">
-      <div class="section-head">
+    <div class="step-screen" id="step2">
+      <div class="section-intro">
         <h2>Qu'est-ce qui s'est passé ?</h2>
-        <p>Aidez-nous à comprendre ce qui a freiné le lancement.</p>
+        <p>Aidez-nous à comprendre ce qui a freiné la concrétisation.</p>
       </div>
 
-      <div class="field">
-        <label class="field-label">Quel était le frein principal ? <span class="field-hint">(choix multiples)</span></label>
-        <div class="selection-list">
-          <label class="card-option">
+      <div class="question-block">
+        <label class="question-label">Quel était le frein principal ? <span class="question-hint">(choix multiples)</span></label>
+        
+        <div class="options-stack">
+          <label class="choice-card">
             <input type="checkbox" name="objection" value="prix">
-            <div class="card-icon">💰</div>
-            <div class="card-body">
-              <div class="card-title">Le prix ne passait pas</div>
-              <div class="card-desc">Le devis dépassait ce que je pouvais investir</div>
+            <div class="choice-icon">💰</div>
+            <div class="choice-content">
+              <div class="choice-title">Le prix ne passait pas</div>
+              <div class="choice-desc">L'investissement dépassait la trésorerie allouée</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="objection" value="pas-le-moment">
-            <div class="card-icon">⏰</div>
-            <div class="card-body">
-              <div class="card-title">Ce n'était pas le bon moment</div>
-              <div class="card-desc">Trop de projets en parallèle, remis à plus tard</div>
+            <div class="choice-icon">⏰</div>
+            <div class="choice-content">
+              <div class="choice-title">Ce n'était pas le bon moment</div>
+              <div class="choice-desc">D'autres priorités ont pris le dessus</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="objection" value="pas-convaincu">
-            <div class="card-icon">🤔</div>
-            <div class="card-body">
-              <div class="card-title">Pas 100% convaincu</div>
-              <div class="card-desc">Pas certain que cela m'apporterait un ROI concret</div>
+            <div class="choice-icon">🤔</div>
+            <div class="choice-content">
+              <div class="choice-title">Pas 100% convaincu</div>
+              <div class="choice-desc">Doute sur la rentabilité ou la nécessité immédiate</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option" id="label-autre-offre">
-            <input type="checkbox" name="objection" value="autre-offre" onchange="toggleAutreOffre(this)">
-            <div class="card-icon">👥</div>
-            <div class="card-body">
-              <div class="card-title">Autre proposition</div>
-              <div class="card-desc">Un prestataire m'a proposé une offre moins chère</div>
+          <label class="choice-card">
+            <input type="checkbox" name="objection" value="autre-offre" onchange="toggleAltOffer(this)">
+            <div class="choice-icon">👥</div>
+            <div class="choice-content">
+              <div class="choice-title">Autre proposition</div>
+              <div class="choice-desc">Une offre concurrente ou moins chère reçue ailleurs</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="objection" value="complique">
-            <div class="card-icon">😵</div>
-            <div class="card-body">
-              <div class="card-title">Trop complexe</div>
-              <div class="card-desc">Idée floue ou périmètre difficile à cerner</div>
+            <div class="choice-icon">😵</div>
+            <div class="choice-content">
+              <div class="choice-title">Périmètre trop flou</div>
+              <div class="choice-desc">Difficulté à exprimer le besoin exact</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="objection" value="confiance">
-            <div class="card-icon">🤝</div>
-            <div class="card-body">
-              <div class="card-title">Manque de confiance</div>
-              <div class="card-desc">Mauvaise expérience passée avec un freelance/agence</div>
+            <div class="choice-icon">🤝</div>
+            <div class="choice-content">
+              <div class="choice-title">Manque de confiance</div>
+              <div class="choice-desc">Échaudé par de mauvaises expériences passées</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
         </div>
       </div>
 
-      <div class="field" id="q-autre-offre" style="display:none">
-        <label class="field-label" for="autre-result">Et cette autre proposition, a-t-elle abouti ?</label>
+      <div class="question-block" id="box-autre-offre" style="display:none">
+        <label class="question-label" for="autre-result">Et cette autre solution, quel en est le résultat ?</label>
         <select id="autre-result">
-          <option value="">Sélectionnez une option...</option>
-          <option value="pas-fait">Non, cela ne s'est pas fait</option>
-          <option value="fait-decu">Oui, mais le résultat est décevant</option>
-          <option value="fait-ok">Oui, le résultat est correct</option>
-          <option value="en-cours">C'est toujours en cours</option>
+          <option value="">Sélectionnez un bilan...</option>
+          <option value="pas-fait">Finalement, rien n'a été fait</option>
+          <option value="fait-decu">Réalisé, mais résultat décevant</option>
+          <option value="fait-ok">Réalisé et satisfaisant</option>
+          <option value="en-cours">C'est toujours en chantier</option>
         </select>
       </div>
 
-      <div class="nav-buttons">
-        <button type="button" class="btn btn-ghost" onclick="goStep(1)">Retour</button>
-        <button type="button" class="btn btn-primary" onclick="goStep(3)">Continuer</button>
+      <div class="action-bar">
+        <button type="button" class="btn btn-ghost" onclick="goTo(1)">Retour</button>
+        <button type="button" class="btn btn-primary" onclick="goTo(3)">Continuer</button>
       </div>
-    </section>
+    </div>
 
-    <!-- ÉTAPE 3 : BUDGET & TIMING -->
-    <section class="form-step" id="step3">
-      <div class="section-head">
-        <h2>Budget & Timing</h2>
-        <p>Ajustons la faisabilité financière et temporelle.</p>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="budget-max">Quel est votre budget maximum idéal ?</label>
-        <input type="text" id="budget-max" placeholder="Ex: 500 000 FCFA, 1 500 €, 3M..." autocomplete="off">
+    <!-- ÉTAPE 3 : BUDGET & DÉLAI -->
+    <div class="step-screen" id="step3">
+      <div class="section-intro">
+        <h2>Budget & Calendrier</h2>
+        <p>Définissons un cadre réaliste et tenable.</p>
       </div>
 
-      <div class="field">
-        <label class="field-label" for="timeline">Pour quand aimeriez-vous que ce soit livré ?</label>
+      <div class="question-block">
+        <label class="question-label" for="budget-max">Votre budget cible maximal pour ce projet ?</label>
+        <input type="text" id="budget-max" placeholder="Ex: 500 000 FCFA, 1 500 €, 2.5 millions..." autocomplete="off">
+      </div>
+
+      <div class="question-block">
+        <label class="question-label" for="timeline">Sous quel délai souhaiteriez-vous la mise en ligne ?</label>
         <select id="timeline">
-          <option value="">Sélectionnez un délai...</option>
-          <option value="urgent">Très urgent (1 à 2 semaines)</option>
+          <option value="">Sélectionnez un horizon...</option>
+          <option value="urgent">Très rapide (1 à 2 semaines)</option>
           <option value="1-2-mois">1 à 2 mois</option>
           <option value="2-3-mois">2 à 3 mois</option>
           <option value="3-6-mois">3 à 6 mois</option>
-          <option value="flexible">Pas de date fixe / Flexible</option>
+          <option value="flexible">Aucune urgence / Flexible</option>
         </select>
       </div>
 
-      <div class="field">
-        <label class="field-label" for="scope">
-          Décrivez brièvement vos attentes prioritaires 
-          <span class="field-hint">(fonctionnalités clés, design...)</span>
+      <div class="question-block">
+        <label class="question-label" for="scope">
+          Vos priorités essentielles
+          <span class="question-hint">(le strict nécessaire pour lancer)</span>
         </label>
-        <textarea id="scope" placeholder="Ex: Site épuré, paiement mobile money, 5 pages simples, galerie photo..."></textarea>
+        <textarea id="scope" placeholder="Ex: Une page de présentation élégante, formulaire de réservation, intégration WhatsApp..."></textarea>
       </div>
 
-      <div class="nav-buttons">
-        <button type="button" class="btn btn-ghost" onclick="goStep(2)">Retour</button>
-        <button type="button" class="btn btn-primary" onclick="goStep(4)">Continuer</button>
+      <div class="action-bar">
+        <button type="button" class="btn btn-ghost" onclick="goTo(2)">Retour</button>
+        <button type="button" class="btn btn-primary" onclick="goTo(4)">Continuer</button>
       </div>
-    </section>
+    </div>
 
-    <!-- ÉTAPE 4 : OFFRE PERSONNALISÉE -->
-    <section class="form-step" id="step4">
-      <div class="section-head">
-        <h2>Derniers détails</h2>
-        <p>Pour construire votre devis spécial Black Friday sur-mesure.</p>
-      </div>
-
-      <div class="field">
-        <label class="field-label" for="would-book">Auriez-vous voulu boucler avec nous ? Pourquoi cela a bloqué ?</label>
-        <textarea id="would-book" placeholder="Partagez votre avis sans filtre..."></textarea>
+    <!-- ÉTAPE 4 : OFFRE SUR-MESURE -->
+    <div class="step-screen" id="step4">
+      <div class="section-intro">
+        <h2>Derniers réglages</h2>
+        <p>Ajustons les détails pour vous formuler l'offre la plus juste.</p>
       </div>
 
-      <div class="field">
-        <label class="field-label" for="expensive">Considériez-vous notre première proposition trop chère ?</label>
-        <select id="expensive" onchange="toggleWhyExpensive(this)">
+      <div class="question-block">
+        <label class="question-label" for="would-book">Auriez-vous aimé travailler avec nous ? Pourquoi cela a achoppé ?</label>
+        <textarea id="would-book" placeholder="Expliquez sans filtre ce qui a manqué..."></textarea>
+      </div>
+
+      <div class="question-block">
+        <label class="question-label" for="expensive">Trouviez-vous notre devis d'origine trop cher ?</label>
+        <select id="expensive" onchange="toggleExpensiveReason(this)">
           <option value="">Sélectionnez...</option>
-          <option value="oui-trop">Oui, trop élevé par rapport à mes moyens</option>
-          <option value="oui-valeur">Oui, rapport valeur/prix discutable</option>
-          <option value="non-ok">Non, le tarif était compréhensible</option>
-          <option value="uncertain">Difficile à évaluer</option>
+          <option value="oui-trop">Oui, trop élevé pour ma capacité financière</option>
+          <option value="oui-valeur">Oui, le rapport valeur perçue / prix n'était pas évident</option>
+          <option value="non-ok">Non, le prix était cohérent</option>
+          <option value="uncertain">Difficile à trancher</option>
         </select>
       </div>
 
-      <div class="field" id="q-expensive-why" style="display:none">
-        <label class="field-label" for="expensive-why">Que faudrait-il ajuster sur le prix pour vous satisfaire ?</label>
-        <textarea id="expensive-why" placeholder="Ex: Un forfait démarrage, moins de fonctionnalités superflues..."></textarea>
+      <div class="question-block" id="box-expensive-why" style="display:none">
+        <label class="question-label" for="expensive-why">Qu'auriez-vous aimé voir pour justifier le tarif ?</label>
+        <textarea id="expensive-why" placeholder="Ex: Une version allégée, des options au choix..."></textarea>
       </div>
 
-      <div class="field">
-        <label class="field-label">Coût versus Résultat attendu : votre perception ?</label>
-        <div class="scale-group">
-          <div class="scale-btn" onclick="selectScale('costValue', 1, this)">1</div>
-          <div class="scale-btn" onclick="selectScale('costValue', 2, this)">2</div>
-          <div class="scale-btn" onclick="selectScale('costValue', 3, this)">3</div>
-          <div class="scale-btn" onclick="selectScale('costValue', 4, this)">4</div>
-          <div class="scale-btn" onclick="selectScale('costValue', 5, this)">5</div>
-        </div>
-        <div class="scale-labels">
-          <span>Coût &gt;&gt; Valeur</span>
-          <span>Équilibre parfait</span>
+      <div class="question-block">
+        <label class="question-label">Votre perception : Coût vs Résultat attendu</label>
+        <div class="scale-container">
+          <div class="scale-track">
+            <div class="scale-btn" onclick="setScore('costValue', 1, this)">1</div>
+            <div class="scale-btn" onclick="setScore('costValue', 2, this)">2</div>
+            <div class="scale-btn" onclick="setScore('costValue', 3, this)">3</div>
+            <div class="scale-btn" onclick="setScore('costValue', 4, this)">4</div>
+            <div class="scale-btn" onclick="setScore('costValue', 5, this)">5</div>
+          </div>
+          <div class="scale-legend">
+            <span>Coût disproportionné</span>
+            <span>Équilibre parfait</span>
+          </div>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Qu'est-ce qui vous ferait dire "OUI" maintenant ? <span class="field-hint">(choix multiples)</span></label>
-        <div class="selection-list">
-          <label class="card-option">
+      <div class="question-block">
+        <label class="question-label">Qu'est-ce qui vous ferait valider cette fois ? <span class="question-hint">(choix multiples)</span></label>
+        <div class="options-stack">
+          <label class="choice-card">
             <input type="checkbox" name="trigger" value="prix-reduit">
-            <div class="card-icon">⚡</div>
-            <div class="card-body">
-              <div class="card-title">Un tarif Black Friday imbattable</div>
-              <div class="card-desc">Une réduction tarifaire directe et franche</div>
+            <div class="choice-icon">⚡</div>
+            <div class="choice-content">
+              <div class="choice-title">Une remise Black Friday directe</div>
+              <div class="choice-desc">Un rabais substantiel et immédiat</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="trigger" value="paiement-echelonne">
-            <div class="card-icon">💳</div>
-            <div class="card-body">
-              <div class="card-title">Facilités de paiement</div>
-              <div class="card-desc">Paiement échelonné sur 2 à 4 échéances</div>
+            <div class="choice-icon">💳</div>
+            <div class="choice-content">
+              <div class="choice-title">Paiement échelonné</div>
+              <div class="choice-desc">Régler en 3 ou 4 fois sans frais supplémentaires</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="trigger" value="garantie">
-            <div class="card-icon">🛡️</div>
-            <div class="card-body">
-              <div class="card-title">Garantie satisfaction</div>
-              <div class="card-desc">Engagement de révision ou remboursement partiel</div>
+            <div class="choice-icon">🛡️</div>
+            <div class="choice-content">
+              <div class="choice-title">Garantie satisfaction</div>
+              <div class="choice-desc">Engagements fermes sur les délais et la qualité</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="trigger" value="voir-avant">
-            <div class="card-icon">👁️</div>
-            <div class="card-body">
-              <div class="card-title">Aperçu visuel offert</div>
-              <div class="card-desc">Maquette ou démonstration avant engagement</div>
+            <div class="choice-icon">👁️</div>
+            <div class="choice-content">
+              <div class="choice-title">Aperçu sans engagement</div>
+              <div class="choice-desc">Voir un premier prototype avant tout paiement</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
 
-          <label class="card-option">
+          <label class="choice-card">
             <input type="checkbox" name="trigger" value="bonus">
-            <div class="card-icon">🎁</div>
-            <div class="card-body">
-              <div class="card-title">Pack complet inclus</div>
-              <div class="card-desc">Nom de domaine, hébergement ou maintenance offerts</div>
+            <div class="choice-icon">🎁</div>
+            <div class="choice-content">
+              <div class="choice-title">Package clé en main</div>
+              <div class="choice-desc">Hébergement, domaine ou maintenance inclus 1 an</div>
             </div>
-            <div class="card-indicator"></div>
+            <div class="choice-check"></div>
           </label>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label">Votre niveau réel d'intérêt pour relancer ce projet ?</label>
-        <div class="scale-group">
-          <div class="scale-btn" onclick="selectScale('interest', 1, this)">1</div>
-          <div class="scale-btn" onclick="selectScale('interest', 2, this)">2</div>
-          <div class="scale-btn" onclick="selectScale('interest', 3, this)">3</div>
-          <div class="scale-btn" onclick="selectScale('interest', 4, this)">4</div>
-          <div class="scale-btn" onclick="selectScale('interest', 5, this)">5</div>
-        </div>
-        <div class="scale-labels">
-          <span>Faible</span>
-          <span>Prêt à démarrer</span>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="field-label">Niveau de confiance envers notre équipe ?</label>
-        <div class="scale-group">
-          <div class="scale-btn" onclick="selectScale('trust', 1, this)">1</div>
-          <div class="scale-btn" onclick="selectScale('trust', 2, this)">2</div>
-          <div class="scale-btn" onclick="selectScale('trust', 3, this)">3</div>
-          <div class="scale-btn" onclick="selectScale('trust', 4, this)">4</div>
-          <div class="scale-btn" onclick="selectScale('trust', 5, this)">5</div>
-        </div>
-        <div class="scale-labels">
-          <span>Mitigé</span>
-          <span>Confiance totale</span>
+      <div class="question-block">
+        <label class="question-label">Votre motivation réelle à lancer ce projet cette année ?</label>
+        <div class="scale-container">
+          <div class="scale-track">
+            <div class="scale-btn" onclick="setScore('interest', 1, this)">1</div>
+            <div class="scale-btn" onclick="setScore('interest', 2, this)">2</div>
+            <div class="scale-btn" onclick="setScore('interest', 3, this)">3</div>
+            <div class="scale-btn" onclick="setScore('interest', 4, this)">4</div>
+            <div class="scale-btn" onclick="setScore('interest', 5, this)">5</div>
+          </div>
+          <div class="scale-legend">
+            <span>Secondaire</span>
+            <span>Priorité absolue</span>
+          </div>
         </div>
       </div>
 
-      <div class="field">
-        <label class="field-label" for="email">Votre adresse email <span class="field-hint">(obligatoire)</span></label>
-        <input type="email" id="email" placeholder="votre.email@domaine.com" required inputmode="email">
-        <div class="field-error-msg" id="error-email">Merci de renseigner un email valide.</div>
+      <div class="question-block">
+        <label class="question-label">Niveau de confiance actuel envers nos services ?</label>
+        <div class="scale-container">
+          <div class="scale-track">
+            <div class="scale-btn" onclick="setScore('trust', 1, this)">1</div>
+            <div class="scale-btn" onclick="setScore('trust', 2, this)">2</div>
+            <div class="scale-btn" onclick="setScore('trust', 3, this)">3</div>
+            <div class="scale-btn" onclick="setScore('trust', 4, this)">4</div>
+            <div class="scale-btn" onclick="setScore('trust', 5, this)">5</div>
+          </div>
+          <div class="scale-legend">
+            <span>Réservé</span>
+            <span>Totale confiance</span>
+          </div>
+        </div>
       </div>
 
-      <div class="field">
-        <label class="field-label" for="message">Un mot pour l'équipe ? <span class="field-hint">(facultatif)</span></label>
-        <textarea id="message" placeholder="Une question, une précision particulière..."></textarea>
+      <div class="question-block">
+        <label class="question-label" for="email">Votre adresse email professionnelle <span class="question-hint">(pour l'envoi)</span></label>
+        <input type="email" id="email" placeholder="votre.nom@domaine.com" inputmode="email">
+        <div class="error-text" id="err-email">Veuillez indiquer une adresse email valide.</div>
       </div>
 
-      <div style="margin-top: 2rem;">
-        <button type="button" class="btn btn-submit" id="submitBtn" onclick="submitForm()">
-          ⚡ Recevoir mon offre Black Friday
+      <div class="question-block">
+        <label class="question-label" for="message">Un mot pour conclure ? <span class="question-hint">(facultatif)</span></label>
+        <textarea id="message" placeholder="Une attente particulière ou une question à nous poser..."></textarea>
+      </div>
+
+      <div style="margin-top: 3.5rem;">
+        <button type="button" class="btn btn-cta" id="submitBtn" onclick="sendForm()">
+          ⚡ Recevoir ma proposition Black Friday
         </button>
-        <p class="privacy-note">Strictement confidentiel. Zéro spam. Nous vous contacterons uniquement pour votre projet.</p>
+        <p class="security-badge">Données protégées. Zéro prospection commerciale intempestive.</p>
       </div>
 
-      <div class="nav-buttons" style="margin-top: 1rem;">
-        <button type="button" class="btn btn-ghost" onclick="goStep(3)">Retour</button>
+      <div class="action-bar" style="margin-top: 1.5rem;">
+        <button type="button" class="btn btn-ghost" onclick="goTo(3)">Retour</button>
       </div>
-    </section>
+    </div>
+
   </form>
 
-  <!-- PANNEAU DE CONFIRMATION -->
-  <div class="success-panel" id="success">
+  <!-- CONFIRMATION DE SUCCÈS -->
+  <div class="success-box" id="successPanel">
     <div class="success-icon">✓</div>
-    <h2>C'est bien noté !</h2>
-    <p>Nous étudions vos réponses pour adapter l'offre Black Friday à vos besoins réels. Surveillez votre boîte mail d'ici peu !</p>
+    <h2>C'est bien enregistré !</h2>
+    <p>Nous étudions vos retours pour formuler une offre adaptée et équilibrée. Vous recevrez notre proposition par email avant l'échéance.</p>
   </div>
 
-  <!-- SOCIAL PROOF -->
-  <footer class="proof">
+  <!-- PREUVES DE CRÉDIBILITÉ EN BAS -->
+  <footer class="proof-bar">
     <div>
-      <div class="proof-num">47+</div>
-      <div class="proof-label">Projets livrés</div>
+      <div class="proof-val">47+</div>
+      <div class="proof-txt">Projets livrés</div>
     </div>
     <div>
-      <div class="proof-num">96%</div>
-      <div class="proof-label">Clients satisfaits</div>
+      <div class="proof-val">96%</div>
+      <div class="proof-txt">Clients conquis</div>
     </div>
     <div>
-      <div class="proof-num">14j</div>
-      <div class="proof-label">Délai moyen</div>
+      <div class="proof-val">14j</div>
+      <div class="proof-txt">Délai moyen</div>
     </div>
   </footer>
 
 </div>
 
 <script>
-/* --- COUNTDOWN BLACK FRIDAY 2026 --- */
-(function initTimer() {
+/* --- COMPTE À REBOURS --- */
+(function() {
   var target = new Date('2026-11-27T00:00:00+01:00').getTime();
   var dEl = document.getElementById('d');
   var hEl = document.getElementById('h');
@@ -1108,9 +1153,7 @@
   var sEl = document.getElementById('s');
 
   function update() {
-    var now = Date.now();
-    var diff = Math.max(0, target - now);
-
+    var diff = Math.max(0, target - Date.now());
     dEl.textContent = String(Math.floor(diff / 864e5)).padStart(2, '0');
     hEl.textContent = String(Math.floor((diff % 864e5) / 36e5)).padStart(2, '0');
     mEl.textContent = String(Math.floor((diff % 36e5) / 6e4)).padStart(2, '0');
@@ -1120,104 +1163,98 @@
   setInterval(update, 1000);
 })();
 
-/* --- DATA & MULTI-STEP LOGIC --- */
+/* --- LOGIQUE MULTI-ÉTAPES --- */
 var formData = {
-  project: '',
-  objections: [],
-  autreResult: '',
-  budgetMax: '',
-  timeline: '',
-  scope: '',
-  wouldBook: '',
-  expensive: '',
-  expensiveWhy: '',
-  costValue: 0,
-  triggers: [],
-  interest: 0,
-  trust: 0,
-  email: '',
-  message: ''
+  project: '', objections: [], autreResult: '',
+  budgetMax: '', timeline: '', scope: '',
+  wouldBook: '', expensive: '', expensiveWhy: '',
+  costValue: 0, triggers: [], interest: 0, trust: 0,
+  email: '', message: ''
 };
 
-var currentStep = 1;
-var stepTitles = [
+var stepLabels = [
   'Étape 1 : Retrouvez votre projet',
-  'Étape 2 : Situation & Blocages',
-  'Étape 3 : Budget & Calendrier',
-  'Étape 4 : Offre personnalisée'
+  'Étape 2 : Situation & Freins',
+  'Étape 3 : Budget & Délais',
+  'Étape 4 : Offre sur-mesure'
 ];
 
-function goStep(stepIndex) {
-  // Masquer les étapes
+var activeStep = 1;
+
+function goTo(stepNum) {
   for (var i = 1; i <= 4; i++) {
-    var el = document.getElementById('step' + i);
-    if (el) el.classList.remove('active');
+    var screen = document.getElementById('step' + i);
+    if (screen) screen.classList.remove('active');
   }
+  var target = document.getElementById('step' + stepNum);
+  if (target) target.classList.add('active');
 
-  // Activer l'étape cible
-  var target = document.getElementById('step' + stepIndex);
-  if (target) {
-    target.classList.add('active');
-    currentStep = stepIndex;
-  }
+  activeStep = stepNum;
+  document.getElementById('stepper-label').textContent = stepLabels[stepNum - 1];
+  document.getElementById('stepper-index').textContent = stepNum + ' / 4';
+  document.getElementById('stepper-bar').style.width = (stepNum * 25) + '%';
 
-  // Mettre à jour le stepper
-  document.getElementById('stepper-title').textContent = stepTitles[stepIndex - 1];
-  document.getElementById('stepper-count').textContent = stepIndex + ' sur 4';
-  document.getElementById('stepper-bar').style.width = (stepIndex * 25) + '%';
-
-  // Remonter en haut de page en douceur
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function validateAndGo(nextStep) {
-  if (currentStep === 1) {
+function proceedToStep(nextStep) {
+  if (activeStep === 1) {
     var selected = document.querySelector('input[name="project"]:checked');
-    var errorEl = document.getElementById('error-step1');
+    var err = document.getElementById('err-step1');
     if (!selected) {
-      errorEl.style.display = 'block';
+      err.style.display = 'block';
       return;
     }
-    errorEl.style.display = 'none';
+    err.style.display = 'none';
     formData.project = selected.value;
   }
-  goStep(nextStep);
+  goTo(nextStep);
 }
 
-function toggleAutreOffre(checkbox) {
-  var box = document.getElementById('q-autre-offre');
-  box.style.display = checkbox.checked ? 'block' : 'none';
+/* --- RECHERCHE INSTANTANÉE DANS LA LISTE --- */
+function filterProjects(keyword) {
+  var val = keyword.toLowerCase().trim();
+  var cards = document.querySelectorAll('#projectsContainer .choice-card');
+  cards.forEach(function(card) {
+    var text = card.getAttribute('data-title') || '';
+    if (!val || text.indexOf(val) !== -1) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
 }
 
-function toggleWhyExpensive(selectEl) {
-  var box = document.getElementById('q-expensive-why');
-  var show = (selectEl.value === 'oui-trop' || selectEl.value === 'oui-valeur');
-  box.style.display = show ? 'block' : 'none';
+function toggleAltOffer(checkbox) {
+  document.getElementById('box-autre-offre').style.display = checkbox.checked ? 'block' : 'none';
 }
 
-function selectScale(key, val, button) {
+function toggleExpensiveReason(selectEl) {
+  var isTooMuch = (selectEl.value === 'oui-trop' || selectEl.value === 'oui-valeur');
+  document.getElementById('box-expensive-why').style.display = isTooMuch ? 'block' : 'none';
+}
+
+function setScore(key, val, el) {
   formData[key] = val;
-  var parent = button.parentElement;
-  var buttons = parent.querySelectorAll('.scale-btn');
+  var buttons = el.parentElement.querySelectorAll('.scale-btn');
   buttons.forEach(function(btn) { btn.classList.remove('selected'); });
-  button.classList.add('selected');
+  el.classList.add('selected');
 }
 
-function submitForm() {
+/* --- SOUMISSION DU FORMULAIRE --- */
+function sendForm() {
   var emailInput = document.getElementById('email');
-  var emailError = document.getElementById('error-email');
-  var emailVal = emailInput.value.trim();
+  var emailErr = document.getElementById('err-email');
+  var email = emailInput.value.trim();
 
-  // Validation email
-  if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-    emailError.style.display = 'block';
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    emailErr.style.display = 'block';
     emailInput.focus();
     return;
   }
-  emailError.style.display = 'none';
+  emailErr.style.display = 'none';
 
-  // Collecte des valeurs restantes
-  formData.email = emailVal;
+  formData.email = email;
   formData.objections = Array.from(document.querySelectorAll('input[name="objection"]:checked')).map(function(c) { return c.value; });
   formData.triggers = Array.from(document.querySelectorAll('input[name="trigger"]:checked')).map(function(c) { return c.value; });
   formData.autreResult = document.getElementById('autre-result').value;
@@ -1231,12 +1268,11 @@ function submitForm() {
   formData.submitted_at = new Date().toISOString();
 
   var btn = document.getElementById('submitBtn');
-  var prevText = btn.innerHTML;
-  btn.innerHTML = 'Envoi en cours...';
+  var defaultText = btn.innerHTML;
+  btn.innerHTML = 'Préparation en cours...';
   btn.disabled = true;
   btn.style.opacity = '0.7';
 
-  // Simulation d'envoi / intégration API
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/submit', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
@@ -1245,19 +1281,18 @@ function submitForm() {
     if (xhr.status === 200) {
       document.getElementById('offerForm').style.display = 'none';
       document.getElementById('stepper').style.display = 'none';
-      var successEl = document.getElementById('success');
-      successEl.classList.add('active');
+      document.getElementById('successPanel').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      btn.innerHTML = prevText;
+      btn.innerHTML = defaultText;
       btn.disabled = false;
       btn.style.opacity = '1';
-      alert('Une erreur est survenue lors de l\'enregistrement. Merci de réessayer.');
+      alert('Une erreur s\'est produite. Veuillez réessayer.');
     }
   };
 
   xhr.onerror = function() {
-    btn.innerHTML = prevText;
+    btn.innerHTML = defaultText;
     btn.disabled = false;
     btn.style.opacity = '1';
     alert('Erreur réseau. Veuillez vérifier votre connexion.');
